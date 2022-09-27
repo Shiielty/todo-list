@@ -11,12 +11,26 @@ h2.textContent = "psst, open the console";
 content.appendChild(h1);
 content.appendChild(h2);
 
-// Todos Object
-const ToDo = (title) => {
+// Todos and Projects
+const projects = []; 
+
+// Todos function factory
+const Task = (title) => {
     return { title }
 }
 
-// function to push todo to an array
-const submit = (arr, obj) => {
-    arr.push(obj);
+// Project function factory
+const Project = (projectTitle) => {
+    const tasks = []
+    return {projectTitle, tasks }
+}
+
+// submit object (task/project) to an array
+const addTasks = (task, tasks) => {
+    tasks.push(task);
+}
+
+const removeTasks = (task, tasks) => {
+    const taskIndex = tasks.indexOf(task);
+    tasks.splice(taskIndex, 1);
 }
