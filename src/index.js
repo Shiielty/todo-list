@@ -1,4 +1,4 @@
-import "./style.css";
+// import "./style.css";
 
 const content = document.querySelector("#content");
 
@@ -10,3 +10,13 @@ h2.textContent = "psst, open the console";
 
 content.appendChild(h1);
 content.appendChild(h2);
+
+// Todos Object
+const ToDo = (title) => {
+    return { title }
+}
+
+// function to push todo to an array
+const submit = (arr, obj) => {
+    arr.push(obj);
+}
