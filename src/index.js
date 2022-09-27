@@ -21,16 +21,33 @@ const Task = (title) => {
 
 // Project function factory
 const Project = (projectTitle) => {
-    const tasks = []
-    return {projectTitle, tasks }
+    const tasks = [];
+    const status = "inactive";
+    return {projectTitle, tasks, status }
 }
 
-// submit object (task/project) to an array
-const addTasks = (task, tasks) => {
-    tasks.push(task);
+const addProject = (project) => {
+    projects.push(project);
 }
 
-const removeTasks = (task, tasks) => {
-    const taskIndex = tasks.indexOf(task);
-    tasks.splice(taskIndex, 1);
+const addTask = (task) => {
+    const currentProject = whichActive(projects);
+    currentProject.tasks.push(task);
+}
+
+const removeTask = (task) => {
+    const currentProject = whichActive(projects);
+    const taskIndex = currentProject.tasks.indexOf(task);
+    currentProject.tasks.splice(taskIndex, 1);
+}
+
+const whichActive = (projects) => {
+    const activeProject = projects.find(project => project.status == "active");
+    return activeProject;
+}
+
+const changeProject = (targetProject) => {
+    const currentProject = whichActive(projects);
+    currentProject.status = "inactive";
+    targetProject.status = "active";
 }
