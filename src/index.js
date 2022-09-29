@@ -26,11 +26,14 @@ const Project = (projectTitle) => {
     return {projectTitle, tasks, status }
 }
 
-const addProject = (project) => {
+const addProject = (title) => {
+    const project = Project(title);
     projects.push(project);
+    if (projects.length === 1) projects[0].status = "active";
 }
 
-const addTask = (task) => {
+const addTask = (title) => {
+    const task = Task(title);
     const currentProject = whichActive(projects);
     currentProject.tasks.push(task);
 }
@@ -50,4 +53,8 @@ const changeProject = (targetProject) => {
     const currentProject = whichActive(projects);
     currentProject.status = "inactive";
     targetProject.status = "active";
+}
+
+const removeProject = (index) => {
+    projects.splice(index, 1);
 }
