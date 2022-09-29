@@ -3,23 +3,64 @@ body {
     padding: 0;
 }
 
-#content {
+#content > div {
     height: 100vh;
     background-color: rgb(20, 20, 20);
     display: flex;
+}
+
+header {
+    min-width: 250px;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    background-color: antiquewhite;
+}
+
+h1,
+p {
+    margin: 0;
 }
 
 h1 {
+    margin: 0;
+    padding: 15px;
     color: rgb(105, 105, 105)
 }
 
-h2 {
-    color: rgb(20, 20, 20)
+.project-header {
+    align-self: start;
+    padding: 10px;
+    font-weight: bold;
 }
 
-h2:hover {
-    background-color: rgb(199, 199, 199);
+.project-wrapper {
+    background-color: bisque;
+    width: 100%;
 }
+
+.project-wrapper > p {
+    margin: 10px 20px;
+    padding: 0;
+}
+
+.add-project-btn,
+.add-task-btn {
+    margin-top: 20px;
+    padding: 8px;
+    background-color: aliceblue;
+}
+
+main {
+    width: 100%;
+    background-color: aliceblue;
+    padding: 125px 20px;
+}
+
+.task-wrapper {
+    background-color: aqua;
+    padding: 5px 15px;
+}
+
+
+
