@@ -13,10 +13,10 @@ const Project = (projectTitle) => {
     return {projectTitle, tasks, status }
 }
 
-const addProject = (title) => {
+const addProject = (title, arr) => {
     const project = Project(title);
-    projects.push(project);
-    if (projects.length === 1) projects[0].status = "active";
+    arr.push(project);
+    if (arr.length === 1) arr[0].status = "active";
 }
 
 const addTask = (title) => {
@@ -45,3 +45,7 @@ const changeProject = (targetProject) => {
 const removeProject = (index) => {
     projects.splice(index, 1);
 }
+
+const test = () => console.log("Hello friend.");
+
+export { projects, addProject, test }
