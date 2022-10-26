@@ -5,11 +5,3 @@ import { initializeWebsite } from "./dom";
 const content = document.querySelector("#content");
 
 content.appendChild(initializeWebsite());
-
-// const arr = projects;
-// content.addEventListener('click', ((e) => {
-//     if (e.target.nodeName == "BUTTON") {
-//         console.log(arr);
-//         addProject("project", arr);
-//     }
-// }))

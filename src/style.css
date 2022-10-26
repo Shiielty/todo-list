@@ -1,20 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&family=Inknut+Antiqua:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+
+/* font-family: 'Inconsolata', monospace;
+font-family: 'Inknut Antiqua', serif;
+font-family: 'Roboto', sans-serif; */
+
+:root {
+    --black: #164E63;
+    --grey: rgba(0, 0, 0, 0.75);
+    --deepsea: #155E75;
+    --darkblue: #0E7490;
+    --blue: #06B6D4;
+    --white: #FFFFFF;
+    --white8: rgba(255, 255, 255, 0.8);
+    --white5: rgba(255, 255, 255, 0.5); 
+}
+
 body {
     margin: 0;
     padding: 0;
+    background-color: var(--black);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
 }
 
-#content > div {
-    height: 100vh;
-    background-color: rgb(20, 20, 20);
-    display: flex;
+.wrapper {
+    background-color: var(--deepsea);
+    max-width: 550px;
+    min-height: 100vh;
+    margin: 0 auto;
 }
 
 header {
-    min-width: 250px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: antiquewhite;
+    background-color: var(--darkblue);
+    padding-bottom: 20px;
 }
 
 h1,
@@ -22,45 +42,50 @@ p {
     margin: 0;
 }
 
-h1 {
-    margin: 0;
-    padding: 15px;
-    color: rgb(105, 105, 105)
+header > h1 {
+    font-family: 'Inknut Antiqua', serif;
+    font-size: 3rem;
+    color: var(--white);
+    text-align: center;
 }
 
-.project-header {
-    align-self: start;
-    padding: 10px;
+header > p {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.9rem;
+    color: white;
+    text-align: left;
+    margin: 0 85px;
+}
+
+header > button {
+    align-self: end;
+    position: relative;
+    bottom: -34px;
+    border: none;
+    background-color: var(--blue);
+    color: var(--white8);
+    height: 34px;
+    padding: 5px 10px;
     font-weight: bold;
 }
 
-.project-wrapper {
-    background-color: bisque;
-    width: 100%;
+header > button:hover {
+    background-color: var(--black);
 }
 
-.project-wrapper > p {
-    margin: 10px 20px;
-    padding: 0;
+.project {
+    background-color: var(--blue);
+    font-family: 'Inconsolata', monospace;
 }
 
-.add-project-btn,
-.add-task-btn {
-    margin-top: 20px;
-    padding: 8px;
-    background-color: aliceblue;
+.task-header {
+    display: flex;
+    border-bottom: var(--grey);
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--white5);
 }
 
-main {
-    width: 100%;
-    background-color: aliceblue;
-    padding: 125px 20px;
+.task-header .active {
+    font-size: 2rem;
 }
-
-.task-wrapper {
-    background-color: aqua;
-    padding: 5px 15px;
-}
-
-
-
