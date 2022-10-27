@@ -57,25 +57,33 @@ header > p {
     margin: 0 85px;
 }
 
-header > button {
+nav {
     align-self: end;
     position: relative;
     bottom: -34px;
-    border: none;
-    background-color: var(--blue);
-    color: var(--white8);
+
+    display: flex;
+    gap: 1px;
+}
+
+header button {
     height: 34px;
     padding: 5px 10px;
-    font-weight: bold;
-}
-
-header > button:hover {
-    background-color: var(--black);
-}
-
-.project {
+    border: none;
     background-color: var(--blue);
     font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+    color: var(--white8);
+}
+
+header button:hover {
+    background-color: var(--black);
+    cursor: pointer;
+}
+
+header img {
+    height: 20px;
+    width: auto;
 }
 
 .task-header {
