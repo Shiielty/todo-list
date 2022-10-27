@@ -74,11 +74,16 @@ const createMain = () => {
    const tomorrow = createList("Tomorrow"); 
    const upcoming = createList("Upcoming"); 
    const someday = createList("Someday");
+
+   tasksHeader.classList.add("task-header")
+   today.classList.add("active");
+
    tasksHeader.appendChild(today);
    tasksHeader.appendChild(tomorrow);
    tasksHeader.appendChild(upcoming);
    tasksHeader.appendChild(someday);
-
+   
+   
    main.appendChild(tasksHeader);
 
    const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
@@ -93,12 +98,11 @@ const createMain = () => {
 
 const initializeWebsite = () => {
     const wrapper = document.createElement("div");
-    wrapper.classList.add("wrapper")
+    wrapper.classList.add("wrapper");
     wrapper.appendChild(createHeader());
     wrapper.appendChild(createMain());
     
     return wrapper;
 }
-
 
 export { initializeWebsite }
