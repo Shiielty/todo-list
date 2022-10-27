@@ -6,6 +6,13 @@ const createParagraph = (text) => {
     return p;
 }
 
+const createImage = (image) => {
+    const img = new Image();
+    img.src = image;
+
+    return img;
+}
+
 const createHeader = () => {
     const header = document.createElement("header");
     const title = document.createElement('h1');
@@ -15,9 +22,7 @@ const createHeader = () => {
     const projectNav = document.createElement("nav");
     const projectTitle = document.createElement("button");
     const projectMenu = document.createElement("button");
-
-    const menuIcon = new Image();
-    menuIcon.src = Menu;
+    const menuIcon = createImage(Menu);
 
     title.textContent = "Just Do It List";
     projectTitle.textContent = "Projects"
@@ -36,9 +41,9 @@ const createHeader = () => {
     return header;
 }
 
-// const createMain = () => {    
+const createMain = () => {    
    
-// }
+}
 
 const initializeWebsite = () => {
     const wrapper = document.createElement("div");
