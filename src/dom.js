@@ -70,12 +70,14 @@ const createMain = () => {
    const main = document.createElement("main");
 
    const tasksHeader = document.createElement("div");
+   const taskContainer = document.createElement("div");
    const today = createList("Today"); 
    const tomorrow = createList("Tomorrow"); 
    const upcoming = createList("Upcoming"); 
    const someday = createList("Someday");
 
-   tasksHeader.classList.add("task-header")
+   tasksHeader.classList.add("task-header");
+   taskContainer.classList.add("task-container");
    today.classList.add("active");
 
    tasksHeader.appendChild(today);
@@ -83,15 +85,16 @@ const createMain = () => {
    tasksHeader.appendChild(upcoming);
    tasksHeader.appendChild(someday);
    
-   
    main.appendChild(tasksHeader);
 
    const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
 
    exampleTask.forEach((item) => {
     const checkbox = createCheckbox(exampleTask.indexOf(item), item);
-    main.appendChild(checkbox);
+    taskContainer.appendChild(checkbox);
    })
+
+   main.appendChild(taskContainer);
 
    return main;
 }
