@@ -13,6 +13,31 @@ const createImage = (image) => {
     return img;
 }
 
+const createList = (text) => {
+    const li = document.createElement("li");
+    li.textContent = text;
+
+    return li;
+}
+
+const createCheckbox = (index, text) => {
+    const checkbox = document.createElement("div")
+
+    const input = document.createElement("input");
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("id", `${index}`);
+    input.setAttribute("name", `${index}`);
+
+    const label = document.createElement("label");
+    label.setAttribute("for", `${index}`);
+    label.textContent = text;
+
+    checkbox.appendChild(input);
+    checkbox.appendChild(label);
+
+    return checkbox;
+}
+
 const createHeader = () => {
     const header = document.createElement("header");
     const title = document.createElement('h1');
@@ -42,14 +67,35 @@ const createHeader = () => {
 }
 
 const createMain = () => {    
-   
+   const main = document.createElement("main");
+
+   const tasksHeader = document.createElement("div");
+   const today = createList("Today"); 
+   const tomorrow = createList("Tomorrow"); 
+   const upcoming = createList("Upcoming"); 
+   const someday = createList("Someday");
+   tasksHeader.appendChild(today);
+   tasksHeader.appendChild(tomorrow);
+   tasksHeader.appendChild(upcoming);
+   tasksHeader.appendChild(someday);
+
+   main.appendChild(tasksHeader);
+
+   const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
+
+   exampleTask.forEach((item) => {
+    const checkbox = createCheckbox(exampleTask.indexOf(item), item);
+    main.appendChild(checkbox);
+   })
+
+   return main;
 }
 
 const initializeWebsite = () => {
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper")
     wrapper.appendChild(createHeader());
-    // wrapper.appendChild(createMain());
+    wrapper.appendChild(createMain());
     
     return wrapper;
 }
