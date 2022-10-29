@@ -154,4 +154,5 @@ input#taskInput {
 input#taskInput:focus-visible {
     outline: none;
     color: var(--white);
+    width: 100%;
 }
