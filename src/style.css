@@ -118,7 +118,7 @@ main {
 .task-container div {
     display: flex;
     align-items: center;
-    padding: 5px 20px;
+    padding: 0 20px;
     color: var(--white8)
 }
 
@@ -126,7 +126,32 @@ main {
     background-color: var(--blue);
 }
 
-.task-container label {
-    margin: 0 10px;
+.task-container div:last-of-type:hover {
+    background-color: var(--deepsea);
 }
 
+.task-container label {
+    padding: 5px 10px;
+}
+
+label[for="taskInput"] {
+    position: relative;
+    right: 8px;
+    color: #000000a1;
+    font-size: 2rem;
+}
+
+input#taskInput {
+    position: relative;
+    right: 37px;
+    padding: 5px 5px 5px 30px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1rem;
+}
+
+input#taskInput:focus-visible {
+    outline: none;
+    color: var(--white);
+}
