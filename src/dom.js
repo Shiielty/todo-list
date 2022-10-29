@@ -20,23 +20,48 @@ const createList = (text) => {
     return li;
 }
 
-const createCheckbox = (index, text) => {
-    const checkbox = document.createElement("div")
-
+const createInput = (id) => {
     const input = document.createElement("input");
-    input.setAttribute("type", "checkbox");
-    input.setAttribute("id", `${index}`);
-    input.setAttribute("name", `${index}`);
+    input.setAttribute("id", id);
+    input.setAttribute("name", id);
 
+    return input;
+}
+
+const createLabel = (id, labelText) => {
     const label = document.createElement("label");
-    label.setAttribute("for", `${index}`);
-    label.textContent = text;
+    label.setAttribute("for", id);
+    label.textContent = labelText;
+
+    return label;
+}
+
+const createCheckbox = (id, labelText) => {
+    const checkbox = document.createElement("div")
+    const input = createInput(id);
+    input.setAttribute("type", "checkbox");
+
+    const label = createLabel(id, labelText);
 
     checkbox.appendChild(input);
     checkbox.appendChild(label);
 
     return checkbox;
 }
+
+const createTextInput = (id, labelText, placeholder="") => {
+    const textInput = document.createElement("div");
+    const input = createInput(id);
+    input.setAttribute("type", "text");
+    input.setAttribute("placeholder", placeholder);
+
+    const label = createLabel(id, labelText);
+
+    textInput.appendChild(label);
+    textInput.appendChild(input);
+
+    return textInput;
+} 
 
 const createHeader = () => {
     const header = document.createElement("header");
@@ -67,36 +92,37 @@ const createHeader = () => {
 }
 
 const createMain = () => {    
-   const main = document.createElement("main");
+    const main = document.createElement("main");
 
-   const tasksHeader = document.createElement("div");
-   const taskContainer = document.createElement("div");
-   const today = createList("Today"); 
-   const tomorrow = createList("Tomorrow"); 
-   const upcoming = createList("Upcoming"); 
-   const someday = createList("Someday");
+    const tasksHeader = document.createElement("div");
+    const taskContainer = document.createElement("div");
+    const today = createList("Today"); 
+    const tomorrow = createList("Tomorrow"); 
+    const upcoming = createList("Upcoming"); 
+    const someday = createList("Someday");
+    const taskInput = createTextInput("taskInput", "+", "Create new task...");
 
-   tasksHeader.classList.add("task-header");
-   taskContainer.classList.add("task-container");
-   today.classList.add("active");
+    tasksHeader.classList.add("task-header");
+    taskContainer.classList.add("task-container");
+    today.classList.add("active");
 
-   tasksHeader.appendChild(today);
-   tasksHeader.appendChild(tomorrow);
-   tasksHeader.appendChild(upcoming);
-   tasksHeader.appendChild(someday);
-   
-   main.appendChild(tasksHeader);
+    
+    const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
+    
+    exampleTask.forEach((item) => {
+        const checkbox = createCheckbox(exampleTask.indexOf(item), item);
+        taskContainer.appendChild(checkbox);
+    })
+    
+    tasksHeader.appendChild(today);
+    tasksHeader.appendChild(tomorrow);
+    tasksHeader.appendChild(upcoming);
+    tasksHeader.appendChild(someday);
+    taskContainer.appendChild(taskInput);
+    main.appendChild(tasksHeader);
+    main.appendChild(taskContainer);
 
-   const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
-
-   exampleTask.forEach((item) => {
-    const checkbox = createCheckbox(exampleTask.indexOf(item), item);
-    taskContainer.appendChild(checkbox);
-   })
-
-   main.appendChild(taskContainer);
-
-   return main;
+    return main;
 }
 
 const initializeWebsite = () => {
@@ -104,7 +130,7 @@ const initializeWebsite = () => {
     wrapper.classList.add("wrapper");
     wrapper.appendChild(createHeader());
     wrapper.appendChild(createMain());
-    
+
     return wrapper;
 }
 
