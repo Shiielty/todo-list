@@ -1,5 +1,40 @@
 // Todos and Projects
-const projects = []; 
+const projects = [
+    {
+        "projectTitle": "Inbox",
+        "tasks": [
+            {
+                "title": "Task 1",
+            },
+            {
+                "title": "Task 2",
+            },
+            {
+                "title": "Task 3",
+            },
+            {
+                "title": "It works yay!!",
+            }, ],
+        "status": "inactive",
+    },
+    {
+        "projectTitle": "Project 2",
+        "tasks": [
+            {
+                "title": "Task 99",
+            },
+            {
+                "title": "Task 100",
+            },
+            {
+                "title": "Task 101",
+            },
+            {
+                "title": "It fucking works, lets gooo!!",
+            }, ],
+        "status": "active",
+    }
+]; 
 
 // Todos function factory
 const Task = (title) => {
@@ -48,4 +83,4 @@ const removeProject = (index) => {
 
 const test = () => console.log("Hello friend.");
 
-export { projects, addProject, test }
+export { projects, addProject, addTask, removeTask, changeProject, whichActive, test }

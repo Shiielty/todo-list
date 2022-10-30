@@ -1,3 +1,4 @@
+import { projects, addProject, addTask, removeTask, changeProject, whichActive, test } from './handler';
 import Menu from './public/hamburger.png';
 
 const createParagraph = (text) => {
@@ -54,14 +55,16 @@ const createTextInput = (id, labelText, placeholder="") => {
     const input = createInput(id);
     input.setAttribute("type", "text");
     input.setAttribute("placeholder", placeholder);
-
+    
     const label = createLabel(id, labelText);
-
+    
     textInput.appendChild(label);
     textInput.appendChild(input);
-
+    
     return textInput;
 } 
+
+const activeProject = whichActive(projects);
 
 const createHeader = () => {
     const header = document.createElement("header");
@@ -75,7 +78,7 @@ const createHeader = () => {
     const menuIcon = createImage(Menu);
 
     title.textContent = "Just Do It List";
-    projectTitle.textContent = "Projects"
+    projectTitle.textContent = activeProject.projectTitle;
 
     projectMenu.appendChild(menuIcon);
 
@@ -105,12 +108,12 @@ const createMain = () => {
     tasksHeader.classList.add("task-header");
     taskContainer.classList.add("task-container");
     today.classList.add("active");
-
     
-    const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
+    // const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
+    // Use tasks in projects array instead
     
-    exampleTask.forEach((item) => {
-        const checkbox = createCheckbox(exampleTask.indexOf(item), item);
+    activeProject.tasks.forEach((item) => {
+        const checkbox = createCheckbox(activeProject.tasks.indexOf(item.title), item.title);
         taskContainer.appendChild(checkbox);
     })
     
