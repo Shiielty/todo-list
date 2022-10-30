@@ -113,7 +113,7 @@ const createMain = () => {
     // Use tasks in projects array instead
     
     activeProject.tasks.forEach((item) => {
-        const checkbox = createCheckbox(activeProject.tasks.indexOf(item.title), item.title);
+        const checkbox = createCheckbox(activeProject.tasks.indexOf(item), item.title);
         taskContainer.appendChild(checkbox);
     })
     
