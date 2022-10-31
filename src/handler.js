@@ -1,7 +1,7 @@
 // Todos and Projects
 const projects = [
     {
-        "projectTitle": "Inbox",
+        "projectTitle": "Project 1",
         "tasks": [
             {
                 "title": "Task 1",
@@ -15,7 +15,7 @@ const projects = [
             {
                 "title": "It works yay!!",
             }, ],
-        "status": "active",
+        "status": "inactive",
     },
     {
         "projectTitle": "Project 2",
@@ -30,9 +30,9 @@ const projects = [
                 "title": "Task 101",
             },
             {
-                "title": "It fucking works, lets gooo!!",
+                "title": "Something isn't right",
             }, ],
-        "status": "inactive",
+        "status": "active",
     }
 ]; 
 

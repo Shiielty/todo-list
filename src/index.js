@@ -7,16 +7,13 @@ const content = document.querySelector("#content");
 
 content.appendChild(initializeWebsite());
 
-const main = document.querySelector("main");
-let taskContainer = document.querySelector(".task-container");
-
 
 // Controller
 
 const render = () => {
-    taskContainer.remove();
-    main.appendChild(createTasksContainer());
-    taskContainer = document.querySelector(".task-container");
+    const wrapper = document.querySelector(".wrapper");
+    wrapper.remove();
+    content.appendChild(initializeWebsite());
 }
 
 content.addEventListener("click", (e) => {
