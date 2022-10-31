@@ -15,7 +15,7 @@ const projects = [
             {
                 "title": "It works yay!!",
             }, ],
-        "status": "inactive",
+        "status": "active",
     },
     {
         "projectTitle": "Project 2",
@@ -32,7 +32,7 @@ const projects = [
             {
                 "title": "It fucking works, lets gooo!!",
             }, ],
-        "status": "active",
+        "status": "inactive",
     }
 ]; 
 
@@ -45,25 +45,24 @@ const Task = (title) => {
 const Project = (projectTitle) => {
     const tasks = [];
     const status = "inactive";
-    return {projectTitle, tasks, status }
+    
+    const addTask = (title) => {
+        const task = Task(title);
+        tasks.push(task);
+    }
+    const removeTask = (task) => {
+        tasks.filter(!task)
+        // const taskIndex = tasks.indexOf(task);
+        // currentProject.tasks.splice(taskIndex, 1);
+    }
+
+    return {projectTitle, tasks, status, addTask, removeTask }
 }
 
 const addProject = (title, arr) => {
     const project = Project(title);
     arr.push(project);
     if (arr.length === 1) arr[0].status = "active";
-}
-
-const addTask = (title) => {
-    const task = Task(title);
-    const currentProject = whichActive(projects);
-    currentProject.tasks.push(task);
-}
-
-const removeTask = (task) => {
-    const currentProject = whichActive(projects);
-    const taskIndex = currentProject.tasks.indexOf(task);
-    currentProject.tasks.splice(taskIndex, 1);
 }
 
 const whichActive = (projects) => {
@@ -83,4 +82,4 @@ const removeProject = (index) => {
 
 const test = () => console.log("Hello friend.");
 
-export { projects, addProject, addTask, removeTask, changeProject, whichActive, test }
+export { projects, addProject, changeProject, whichActive, test }

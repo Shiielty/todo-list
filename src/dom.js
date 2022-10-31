@@ -1,4 +1,4 @@
-import { projects, addProject, addTask, removeTask, changeProject, whichActive, test } from './handler';
+import { projects, whichActive, test } from './handler';
 import Menu from './public/hamburger.png';
 
 const createParagraph = (text) => {
@@ -64,7 +64,6 @@ const createTextInput = (id, labelText, placeholder="") => {
     return textInput;
 } 
 
-const activeProject = whichActive(projects);
 
 const createHeader = () => {
     const header = document.createElement("header");
@@ -76,54 +75,67 @@ const createHeader = () => {
     const projectTitle = document.createElement("button");
     const projectMenu = document.createElement("button");
     const menuIcon = createImage(Menu);
-
+    
     title.textContent = "Just Do It List";
-    projectTitle.textContent = activeProject.projectTitle;
-
+    projectTitle.textContent = whichActive(projects).projectTitle;
+    projectMenu.classList.add("dev-test-button");
+    menuIcon.classList.add("dev-test-button");
+    
     projectMenu.appendChild(menuIcon);
-
+    
     projectNav.appendChild(projectTitle);
     projectNav.appendChild(projectMenu);
-
+    
     header.appendChild(title);
     header.appendChild(subtitle1);
     header.appendChild(subtitle2);
     header.appendChild(subtitle3);
     header.appendChild(projectNav);
-
+    
     return header;
 }
 
-const createMain = () => {    
-    const main = document.createElement("main");
-
+const createTasksHeader = () => {
     const tasksHeader = document.createElement("div");
-    const taskContainer = document.createElement("div");
     const today = createList("Today"); 
     const tomorrow = createList("Tomorrow"); 
     const upcoming = createList("Upcoming"); 
     const someday = createList("Someday");
-    const taskInput = createTextInput("taskInput", "+", "Create new task...");
 
     tasksHeader.classList.add("task-header");
-    taskContainer.classList.add("task-container");
     today.classList.add("active");
-    
-    // const exampleTask = ["Run for 30 Minutes", "Working on the Project", "Buy groceries", "Sleep at 10:00 A.M"]
-    // Use tasks in projects array instead
-    
-    activeProject.tasks.forEach((item) => {
-        const checkbox = createCheckbox(activeProject.tasks.indexOf(item), item.title);
-        taskContainer.appendChild(checkbox);
-    })
     
     tasksHeader.appendChild(today);
     tasksHeader.appendChild(tomorrow);
     tasksHeader.appendChild(upcoming);
     tasksHeader.appendChild(someday);
+
+    return tasksHeader
+}
+
+const createTasksContainer = () =>{
+    const taskContainer = document.createElement("div");
+    const taskInput = createTextInput("taskInput", "+", "Create new task...");
+    
+    taskContainer.classList.add("task-container");
+    
+    whichActive(projects).tasks.forEach((task) => {
+        const taskId = whichActive(projects).tasks.indexOf(task);
+        const taskTitle = task.title;
+        const checkbox = createCheckbox(taskId, taskTitle);
+        taskContainer.appendChild(checkbox);
+    })
+    
     taskContainer.appendChild(taskInput);
-    main.appendChild(tasksHeader);
-    main.appendChild(taskContainer);
+
+    return taskContainer
+}
+
+const createMain = () => {    
+    const main = document.createElement("main");
+
+    main.appendChild(createTasksHeader());
+    main.appendChild(createTasksContainer());
 
     return main;
 }
@@ -137,4 +149,4 @@ const initializeWebsite = () => {
     return wrapper;
 }
 
-export { initializeWebsite }
+export { initializeWebsite, createTasksContainer }
