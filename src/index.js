@@ -23,13 +23,13 @@ content.addEventListener("click", (e) => {
 
 content.addEventListener("mouseover", (e) => {
     if (e.target.className === "task-item") {
-        const elementId = e.target.dataset.itemId;
-        const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
-        element.classList.add("task-menu-visible");
-
-        // This code will make the task menu disappear when the mouse isn't hover .task-item anymore.
         const taskItems = document.querySelectorAll(".task-item");
         taskItems.forEach((item) => {
+            item.addEventListener("mouseenter", () => {
+                const elementId = item.dataset.itemId;
+                const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
+                element.classList.add("task-menu-visible");
+            })
             item.addEventListener("mouseleave", () => {
                 const elementId = item.dataset.itemId;
                 const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
