@@ -1,5 +1,7 @@
 import { projects, whichActive, test } from './handler';
 import Menu from './public/hamburger.png';
+import Bin from './public/bin.png';
+import Edit from './public/editing.png';
 
 const createParagraph = (text) => {
     const p = document.createElement("p");
@@ -37,17 +39,37 @@ const createLabel = (id, labelText) => {
     return label;
 }
 
-const createCheckbox = (id, labelText) => {
-    const checkbox = document.createElement("div")
+const createTaskItem = (id, labelText) => {
+    const taskItem = document.createElement("div")
+    taskItem.classList.add("task-item");
+    taskItem.dataset.itemId = id;
     const input = createInput(id);
     input.setAttribute("type", "checkbox");
 
     const label = createLabel(id, labelText);
 
-    checkbox.appendChild(input);
-    checkbox.appendChild(label);
+    taskItem.appendChild(input);
+    taskItem.appendChild(label);
 
-    return checkbox;
+    return taskItem;
+}
+
+const createTaskMenu = (id) => {
+    const taskMenu = document.createElement("div");
+    taskMenu.classList.add("task-menu");
+    taskMenu.dataset.itemId = id;
+
+    const editBtn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
+    const editIcon = createImage(Edit);
+    const deleteIcon = createImage(Bin);
+
+    editBtn.appendChild(editIcon);
+    deleteBtn.appendChild(deleteIcon);
+    taskMenu.appendChild(editBtn);
+    taskMenu.appendChild(deleteBtn);
+
+    return taskMenu;
 }
 
 const createTextInput = (id, labelText, placeholder="") => {
@@ -63,7 +85,6 @@ const createTextInput = (id, labelText, placeholder="") => {
     
     return textInput;
 } 
-
 
 const createHeader = () => {
     const header = document.createElement("header");
@@ -122,7 +143,9 @@ const createTasksContainer = () =>{
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
         const taskTitle = task.title;
-        const checkbox = createCheckbox(taskId, taskTitle);
+        const checkbox = createTaskItem(taskId, taskTitle);
+
+        checkbox.appendChild(createTaskMenu(taskId));
         taskContainer.appendChild(checkbox);
     })
     

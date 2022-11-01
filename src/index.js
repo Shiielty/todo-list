@@ -7,9 +7,6 @@ const content = document.querySelector("#content");
 
 content.appendChild(initializeWebsite());
 
-
-// Controller
-
 const render = () => {
     const wrapper = document.querySelector(".wrapper");
     wrapper.remove();
@@ -22,5 +19,19 @@ content.addEventListener("click", (e) => {
         changeProject(targetProject);
         render();
     }
-    // console.log(e);
+})
+
+content.addEventListener("mouseover", (e) => {
+    if (e.target.className === "task-item" || e.target.className === "task-menu") {
+        const targetId = e.target.dataset.itemId;
+        const target = document.querySelector(`.task-menu[data-item-id="${targetId}"]`);
+        target.classList.add("task-menu-visible");
+    }
+})
+
+content.addEventListener("mouseout", (e) => {
+    if (e.target.className === "task-item" || e.target.className === "task-menu") {
+        const targets = document.querySelectorAll(".task-menu");
+        targets.forEach((target) => target.classList.remove("task-menu-visible"))
+    }
 })

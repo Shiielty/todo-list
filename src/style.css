@@ -81,7 +81,7 @@ header button:hover {
     cursor: pointer;
 }
 
-header img {
+img {
     height: 20px;
     width: auto;
 }
@@ -115,23 +115,33 @@ main {
     font-size: 1.5rem;
 }
 
-.task-container div {
+.task-container > div {
     display: flex;
     align-items: center;
     padding: 0 20px;
     color: var(--white8)
 }
 
-.task-container div:hover {
+.task-container > div:hover {
     background-color: var(--blue);
 }
 
-.task-container div:last-of-type:hover {
+.task-container > div:last-of-type:hover {
     background-color: var(--deepsea);
 }
 
 .task-container label {
     padding: 5px 10px;
+}
+
+.task-menu {
+    display: none;
+    margin: 0 10px 0 auto;
+}
+
+.task-menu-visible {
+    display: flex;
+    gap: 5px;
 }
 
 label[for="taskInput"] {
