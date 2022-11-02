@@ -61,8 +61,12 @@ const createTaskMenu = (id) => {
 
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
+
     const editIcon = createImage(Edit);
     const deleteIcon = createImage(Bin);
+
+    editBtn.classList.add("edit-btn");
+    deleteBtn.classList.add("delete-btn")
 
     editBtn.appendChild(editIcon);
     deleteBtn.appendChild(deleteIcon);

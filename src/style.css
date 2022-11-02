@@ -66,6 +66,14 @@ nav {
     gap: 1px;
 }
 
+button {
+    cursor: pointer;
+}
+
+button > img {
+    pointer-events: none;
+}
+
 header button {
     height: 34px;
     padding: 5px 10px;
