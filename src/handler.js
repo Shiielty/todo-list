@@ -45,18 +45,18 @@ const Task = (title) => {
 const Project = (projectTitle) => {
     const tasks = [];
     const status = "inactive";
-    
-    const addTask = (title) => {
-        const task = Task(title);
-        tasks.push(task);
-    }
-    const removeTask = (task) => {
-        tasks.filter(!task)
-        // const taskIndex = tasks.indexOf(task);
-        // currentProject.tasks.splice(taskIndex, 1);
-    }
 
-    return {projectTitle, tasks, status, addTask, removeTask }
+    return {projectTitle, tasks, status}
+}
+
+const addTask = (title) => {
+    const currentProject = whichActive(projects);
+    const task = Task(title);
+    currentProject.tasks.push(task);
+}
+const removeTask = (id) => {
+    const currentProject = whichActive(projects);
+    currentProject.tasks.splice(id, 1);
 }
 
 const addProject = (title, arr) => {
@@ -82,4 +82,4 @@ const removeProject = (index) => {
 
 const test = () => console.log("Hello friend.");
 
-export { projects, addProject, changeProject, whichActive, test }
+export { projects, addTask, removeTask, addProject, changeProject, whichActive, test }
