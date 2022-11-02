@@ -25,6 +25,13 @@ content.addEventListener("click", (e) => {
         removeTask(targetId);
         render();
     }
+    
+    if (e.target.className === "enter-btn") {
+        const taskInput = document.querySelector("#taskInput");
+        const taskTitle = taskInput.value;
+        addTask(taskTitle);
+        render();
+    }
 })
 
 content.addEventListener("mouseover", (e) => {

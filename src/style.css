@@ -174,3 +174,10 @@ input#taskInput:focus-visible {
     color: var(--white);
     width: 100%;
 }
+
+.enter-btn {
+    position: relative;
+    right: 75px;
+    border: none;
+    background-color: transparent;
+}

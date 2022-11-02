@@ -2,6 +2,7 @@ import { projects, whichActive, test } from './handler';
 import Menu from './public/hamburger.png';
 import Bin from './public/bin.png';
 import Edit from './public/editing.png';
+import Enter from './public/enter.png'
 
 const createParagraph = (text) => {
     const p = document.createElement("p");
@@ -141,8 +142,11 @@ const createTasksHeader = () => {
 const createTasksContainer = () =>{
     const taskContainer = document.createElement("div");
     const taskInput = createTextInput("taskInput", "+", "Create new task...");
+    const enterBtn = document.createElement("button");
+    const enterIcon = createImage(Enter)
     
     taskContainer.classList.add("task-container");
+    enterBtn.classList.add("enter-btn"); 
     
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
@@ -153,6 +157,8 @@ const createTasksContainer = () =>{
         taskContainer.appendChild(checkbox);
     })
     
+    enterBtn.appendChild(enterIcon)
+    taskInput.appendChild(enterBtn);
     taskContainer.appendChild(taskInput);
 
     return taskContainer
