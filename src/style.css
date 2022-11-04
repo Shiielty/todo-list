@@ -162,6 +162,7 @@ label[for="taskInput"] {
 input#taskInput {
     position: relative;
     right: 37px;
+    width: 100%;
     padding: 5px 5px 5px 30px;
     background: transparent;
     border: none;
@@ -172,7 +173,6 @@ input#taskInput {
 input#taskInput:focus-visible {
     outline: none;
     color: var(--white);
-    width: 100%;
 }
 
 .enter-btn {

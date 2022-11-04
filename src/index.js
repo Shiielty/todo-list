@@ -13,6 +13,12 @@ const render = () => {
     content.appendChild(initializeWebsite());
 }
 
+const cursorFocus = (elementSelector) => {
+    const target = document.querySelector(elementSelector);
+    target.focus();
+    target.select();
+}
+
 content.addEventListener("click", (e) => {
     if (e.target.className === "dev-test-button") {
         const targetProject = projects.find(project => project.status == "inactive");;
@@ -29,8 +35,11 @@ content.addEventListener("click", (e) => {
     if (e.target.className === "enter-btn") {
         const taskInput = document.querySelector("#taskInput");
         const taskTitle = taskInput.value;
-        addTask(taskTitle);
-        render();
+        const taskTitleTrim = taskTitle.trim();
+        if (taskTitle != "" && taskTitleTrim != "") {
+            addTask(taskTitle);
+            render();
+        }
     }
 })
 
@@ -49,5 +58,15 @@ content.addEventListener("mouseover", (e) => {
                 element.classList.remove("task-menu-visible");
             })
         })
+    }
+})
+
+content.addEventListener("keypress", (e) => {    
+    if (e.target.id === "taskInput") {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.querySelector(".enter-btn").click();
+            cursorFocus("#taskInput");
+        }
     }
 })
