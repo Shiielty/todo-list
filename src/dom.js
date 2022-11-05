@@ -24,10 +24,11 @@ const createList = (text) => {
     return li;
 }
 
-const createInput = (id) => {
+const createInput = (id, type) => {
     const input = document.createElement("input");
     input.setAttribute("id", id);
     input.setAttribute("name", id);
+    input.setAttribute("type", type);
 
     return input;
 }
@@ -44,8 +45,7 @@ const createTaskItem = (id, labelText) => {
     const taskItem = document.createElement("div")
     taskItem.classList.add("task-item");
     taskItem.dataset.itemId = id;
-    const input = createInput(id);
-    input.setAttribute("type", "checkbox");
+    const input = createInput(id, "checkbox");
 
     const label = createLabel(id, labelText);
 
@@ -79,8 +79,7 @@ const createTaskMenu = (id) => {
 
 const createTextInput = (id, labelText, placeholder="") => {
     const textInput = document.createElement("div");
-    const input = createInput(id);
-    input.setAttribute("type", "text");
+    const input = createInput(id, "text");
     input.setAttribute("placeholder", placeholder);
     
     const label = createLabel(id, labelText);
@@ -90,6 +89,42 @@ const createTextInput = (id, labelText, placeholder="") => {
     
     return textInput;
 } 
+
+const createOption = (value) => {
+    const option = document.createElement("option");
+    option.setAttribute("value", value.toLowerCase());
+    option.textContent = value;
+}
+
+const createForm = () => {
+    const form = document.createElement("form");
+    const title = createInput("taskTitle", "text");
+    const description = createInput("taskDesc", "text");
+    const dueDateLabel = createLabel("dueDate", "Due Date: ")
+    const dueDate = createInput("dueDate", "date");
+    const priorityLabel = createLabel("priority", "Priority: ")
+    const priority = document.createElement("select");
+    priority.setAttribute("name", "priority");
+    priority.setAttribute("id", "task-priority");
+
+    const highPriority = createOption("High");
+    const normalPriority = createOption("Normal");
+    const lowPriority = createOption("Low");
+    
+    priority.appendChild(highPriority);
+    form.appendChild(normalPriority);
+    form.appendChild(lowPriority);
+    
+    form.appendChild(title);
+    form.appendChild(description);
+    form.appendChild(dueDateLabel);
+    form.appendChild(dueDate);
+    form.appendChild(priorityLabel);
+    form.appendChild(priority);
+
+    return form;
+}
+
 
 const createHeader = () => {
     const header = document.createElement("header");
