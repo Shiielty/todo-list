@@ -41,6 +41,11 @@ content.addEventListener("click", (e) => {
             render();
         }
     }
+
+    if (e.target.id === "taskInput") {
+        const form = document.querySelector("form");
+        form.classList.toggle("form-active");
+    }
 })
 
 content.addEventListener("mouseover", (e) => {

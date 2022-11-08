@@ -94,6 +94,8 @@ const createOption = (value) => {
     const option = document.createElement("option");
     option.setAttribute("value", value.toLowerCase());
     option.textContent = value;
+
+    return option;
 }
 
 const createForm = () => {
@@ -112,8 +114,8 @@ const createForm = () => {
     const lowPriority = createOption("Low");
     
     priority.appendChild(highPriority);
-    form.appendChild(normalPriority);
-    form.appendChild(lowPriority);
+    priority.appendChild(normalPriority);
+    priority.appendChild(lowPriority);
     
     form.appendChild(title);
     form.appendChild(description);
@@ -195,6 +197,7 @@ const createTasksContainer = () =>{
     enterBtn.appendChild(enterIcon)
     taskInput.appendChild(enterBtn);
     taskContainer.appendChild(taskInput);
+    taskContainer.appendChild(createForm());
 
     return taskContainer
 }

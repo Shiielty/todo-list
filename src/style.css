@@ -181,3 +181,11 @@ input#taskInput:focus-visible {
     border: none;
     background-color: transparent;
 }
+
+form {
+    display: none;
+}
+
+.form-active {
+    display: block;
+}
