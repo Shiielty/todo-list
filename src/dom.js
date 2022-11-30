@@ -99,15 +99,17 @@ const createOption = (value) => {
 }
 
 const createForm = () => {
-    const form = document.createElement("form");
-    const title = createInput("taskTitle", "text");
-    const description = createInput("taskDesc", "text");
+    const form = document.createElement("div");
+    form.classList.add("form");
     const dueDateLabel = createLabel("dueDate", "Due Date: ")
     const dueDate = createInput("dueDate", "date");
     const priorityLabel = createLabel("priority", "Priority: ")
     const priority = document.createElement("select");
     priority.setAttribute("name", "priority");
     priority.setAttribute("id", "task-priority");
+    const descriptionLabel = createLabel("taskDesc", "Notes:")
+    const description = createInput("taskDesc", "text");
+    description.setAttribute("placeholder", "insert your notes here")
 
     const highPriority = createOption("High");
     const normalPriority = createOption("Normal");
@@ -117,12 +119,12 @@ const createForm = () => {
     priority.appendChild(normalPriority);
     priority.appendChild(lowPriority);
     
-    form.appendChild(title);
-    form.appendChild(description);
     form.appendChild(dueDateLabel);
     form.appendChild(dueDate);
     form.appendChild(priorityLabel);
     form.appendChild(priority);
+    form.appendChild(descriptionLabel);
+    form.appendChild(description);
 
     return form;
 }
@@ -181,6 +183,8 @@ const createTasksContainer = () =>{
     const taskInput = createTextInput("taskInput", "+", "Create new task...");
     const enterBtn = document.createElement("button");
     const enterIcon = createImage(Enter)
+
+    taskInput.classList.add("task-input")
     
     taskContainer.classList.add("task-container");
     enterBtn.classList.add("enter-btn"); 

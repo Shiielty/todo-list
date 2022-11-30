@@ -134,7 +134,7 @@ main {
     background-color: var(--blue);
 }
 
-.task-container > div:last-of-type:hover {
+.task-container > div.task-input:hover {
     background-color: var(--deepsea);
 }
 
@@ -164,15 +164,18 @@ input#taskInput {
     right: 37px;
     width: 100%;
     padding: 5px 5px 5px 30px;
-    background: transparent;
+    background-color: var(--black);
     border: none;
-    border-bottom: 1px solid black;
     font-size: 1rem;
+    border-radius: 1rem;
 }
 
 input#taskInput:focus-visible {
     outline: none;
     color: var(--white);
+    background-color: var(--black);
+    border-radius: 1rem;
+    border:none;
 }
 
 .enter-btn {
@@ -182,10 +185,43 @@ input#taskInput:focus-visible {
     background-color: transparent;
 }
 
-form {
+.task-container > div.form {
     display: none;
+    padding: 10px;
+    margin: 0 85px 0 20px;
+    background-color: var(--black);
+    border-radius: 1rem;
 }
 
-.form-active {
+.task-container > div.form-active {
     display: block;
+}
+
+.form.form-active label {
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+input#dueDate {
+    margin-right: 20px;
+}
+
+label[for="taskDesc"] {
+    display: block;
+    margin-top: 10px;
+}
+
+input#taskDesc {
+    display: block;
+    background-color: transparent;
+    border: none;
+    width: 400px;
+    padding: 5px 10px;
+}
+
+#taskDesc:focus-visible {
+    outline: none;
+    color: var(--white);
+    background-color: black;
+    border-radius: 1rem;
 }
