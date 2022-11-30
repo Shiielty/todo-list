@@ -34,10 +34,17 @@ content.addEventListener("click", (e) => {
     
     if (e.target.className === "enter-btn") {
         const taskInput = document.querySelector("#taskInput");
+        const taskDueDate = document.querySelector("input#dueDate");
+        const taskPriority = document.querySelector("select#task-priority");
+        const taskDescription = document.querySelector("input#taskDesc");
         const taskTitle = taskInput.value;
+        const dueDate = taskDueDate.value;
+        const priority = taskPriority.value;
+        const description = taskDescription.value;
         const taskTitleTrim = taskTitle.trim();
         if (taskTitle != "" && taskTitleTrim != "") {
-            addTask(taskTitle);
+            addTask(taskTitle, dueDate, priority, description);
+            console.table(projects)
             render();
         }
     }
