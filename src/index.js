@@ -43,7 +43,7 @@ content.addEventListener("click", (e) => {
     }
 
     if (e.target.id === "taskInput") {
-        const form = document.querySelector("form");
+        const form = document.querySelector(".task-container > div.form");
         form.classList.toggle("form-active");
     }
 })
@@ -67,11 +67,20 @@ content.addEventListener("mouseover", (e) => {
 })
 
 content.addEventListener("keypress", (e) => {    
-    if (e.target.id === "taskInput") {
+    if (e.target.id === "taskInput" || e.target.id === "taskDesc") {
         if (e.key === "Enter") {
             e.preventDefault();
             document.querySelector(".enter-btn").click();
             cursorFocus("#taskInput");
+            const form = document.querySelector(".task-container > div.form");
+            form.classList.add("form-active");
         }
+    }
+})
+
+content.addEventListener("input", (e) => {
+    if (e.target.id === "taskInput") {
+        const form = document.querySelector(".task-container > div.form");
+        form.classList.add("form-active");
     }
 })
