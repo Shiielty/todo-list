@@ -4,6 +4,10 @@ import Bin from './public/bin.png';
 import Edit from './public/editing.png';
 import Enter from './public/enter.png'
 
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
 const createParagraph = (text) => {
     const p = document.createElement("p");
     p.textContent = text;
@@ -196,10 +200,15 @@ const createTasksContainer = () =>{
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
         const taskTitle = task.title;
+        const taskDueDate = task.dueDate;
+        const taskPriority = task.priority;
+        const taskDescription = task.description;
         const checkbox = createTaskItem(taskId, taskTitle);
+        const form = createForm(taskDueDate, taskPriority, taskDescription)
 
         checkbox.appendChild(createTaskMenu(taskId));
         taskContainer.appendChild(checkbox);
+        taskContainer.appendChild(form);
     })
     
     enterBtn.appendChild(enterIcon)
