@@ -5,15 +5,27 @@ const projects = [
         "tasks": [
             {
                 "title": "Task 1",
+                "dueDate": "2022-01-01",
+                "priority": "high",
+                "description": "This is description of task 1"
             },
             {
                 "title": "Task 2",
+                "dueDate": "2022-01-02",
+                "priority": "high",
+                "description": "This is description of task 2"
             },
             {
                 "title": "Task 3",
+                "dueDate": "2022-03-01",
+                "priority": "low",
+                "description": "This is description of task 3"
             },
             {
                 "title": "It works yay!!",
+                "dueDate": "2022-04-01",
+                "priority": "low",
+                "description": "This is description of task 4"
             }, ],
         "status": "inactive",
     },
@@ -22,15 +34,27 @@ const projects = [
         "tasks": [
             {
                 "title": "Task 99",
+                "dueDate": "2032-04-01",
+                "priority": "low",
+                "description": "This is description of task 99"
             },
             {
                 "title": "Task 100",
+                "dueDate": "2032-04-02",
+                "priority": "low",
+                "description": "This is description of task 100"
             },
             {
                 "title": "Task 101",
+                "dueDate": "2032-04-03",
+                "priority": "high",
+                "description": "This is description of task 101"
             },
             {
                 "title": "Something isn't right",
+                "dueDate": "2022-04-10",
+                "priority": "high",
+                "description": "This is description of task 1000"
             }, ],
         "status": "active",
     }
