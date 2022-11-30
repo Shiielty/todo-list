@@ -98,7 +98,7 @@ const createOption = (value) => {
     return option;
 }
 
-const createForm = () => {
+const createForm = (dueDateValue, priorityValue, descriptionValue ) => {
     const form = document.createElement("div");
     form.classList.add("form");
     const dueDateLabel = createLabel("dueDate", "Due Date: ")
@@ -114,6 +114,10 @@ const createForm = () => {
     const highPriority = createOption("High");
     const normalPriority = createOption("Normal");
     const lowPriority = createOption("Low");
+
+    dueDate.value = dueDateValue;
+    priority.value = priorityValue;
+    description.value = descriptionValue;
     
     priority.appendChild(highPriority);
     priority.appendChild(normalPriority);
@@ -201,7 +205,7 @@ const createTasksContainer = () =>{
     enterBtn.appendChild(enterIcon)
     taskInput.appendChild(enterBtn);
     taskContainer.appendChild(taskInput);
-    taskContainer.appendChild(createForm());
+    taskContainer.appendChild(createForm("2022-01-01", "high", ""));
 
     return taskContainer
 }
