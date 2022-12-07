@@ -181,21 +181,28 @@ input#taskInput:focus-visible {
     background-color: transparent;
 }
 
-.task-container > div.form {
-    display: none;
+.form {
     padding: 10px;
     margin: 0 85px 0 20px;
     background-color: var(--black);
     border-radius: 1rem;
 }
 
-.task-container > div.form-active {
-    display: block;
-}
 
-.form.form-active label {
+.form label {
     padding: 0;
     font-size: 0.9rem;
+}
+
+.form > input:first-of-type {
+    display: block;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 1rem;
+    background: #000000a6;
+    color: white;
+    font-size: 1.5rem;
 }
 
 input#dueDate {

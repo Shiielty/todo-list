@@ -102,7 +102,7 @@ const createOption = (value) => {
     return option;
 }
 
-const createForm = (dueDateValue, priorityValue, descriptionValue ) => {
+const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue ) => {
     const form = document.createElement("div");
     form.classList.add("form");
     const taskTitle = createInput("taskTitle", "text");
@@ -121,6 +121,7 @@ const createForm = (dueDateValue, priorityValue, descriptionValue ) => {
     const normalPriority = createOption("Normal");
     const lowPriority = createOption("Low");
 
+    taskTitle.value = titleValue;
     dueDate.value = dueDateValue;
     description.value = descriptionValue;
 
@@ -244,4 +245,4 @@ const initializeWebsite = () => {
     return wrapper;
 }
 
-export { initializeWebsite, createTasksContainer }
+export { initializeWebsite, createTasksContainer, createForm }

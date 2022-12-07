@@ -1,5 +1,5 @@
 import "./style.css";
-import { initializeWebsite, createTasksContainer } from "./dom";
+import { initializeWebsite, createTasksContainer, createForm } from "./dom";
 import { projects, addProject, addTask, removeTask, changeProject, whichActive } from "./handler"
 // import { projects, addProject, test } from "./handler.js"
 
@@ -17,6 +17,10 @@ const cursorFocus = (elementSelector) => {
     const target = document.querySelector(elementSelector);
     target.focus();
     target.select();
+}
+
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 content.addEventListener("click", (e) => {
@@ -49,9 +53,9 @@ content.addEventListener("click", (e) => {
         }
     }
 
-    if (e.target.id === "taskInput") {
-        const form = document.querySelector(".task-container > div.form");
-        form.classList.toggle("form-active");
+    if (e.target.className === "add-task") {
+        insertAfter(createForm("", "2022-01-01", "normal", ""), e.originalTarget.parentNode);
+        e.originalTarget.style.display = "none";
     }
 })
 
