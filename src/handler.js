@@ -78,6 +78,15 @@ const addTask = (title, dueDate, priority, description) => {
     const task = Task(title, dueDate, priority, description);
     currentProject.tasks.push(task);
 }
+
+const editTask = (title, dueDate, priority, description, id) => {
+    const currentProject = whichActive(projects);
+    currentProject.tasks[id].title = title;
+    currentProject.tasks[id].dueDate = dueDate;
+    currentProject.tasks[id].priority = priority;
+    currentProject.tasks[id].description = description;
+}
+
 const removeTask = (id) => {
     const currentProject = whichActive(projects);
     currentProject.tasks.splice(id, 1);
@@ -104,6 +113,7 @@ const removeProject = (index) => {
     projects.splice(index, 1);
 }
 
+
 const test = () => console.log("Hello friend.");
 
-export { projects, addTask, removeTask, addProject, changeProject, whichActive, test }
+export { projects, addTask, editTask ,removeTask, addProject, changeProject, whichActive, test }

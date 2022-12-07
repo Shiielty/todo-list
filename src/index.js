@@ -1,6 +1,6 @@
 import "./style.css";
 import { initializeWebsite, createTasksContainer, createForm } from "./dom";
-import { projects, addProject, addTask, removeTask, changeProject, whichActive } from "./handler"
+import { projects, addProject, addTask, editTask, removeTask, changeProject, whichActive } from "./handler"
 // import { projects, addProject, test } from "./handler.js"
 
 const content = document.querySelector("#content");
@@ -46,6 +46,7 @@ content.addEventListener("click", (e) => {
     }
     
     if (e.target.className === "submit-btn") {
+        const formId = e.target.parentNode.attributes[1].value;
         const taskTitle = document.querySelector("input#taskTitle");
         const taskDueDate = document.querySelector("input#dueDate");
         const taskPriority = document.querySelector("select#task-priority");
@@ -56,8 +57,12 @@ content.addEventListener("click", (e) => {
         const description = taskDescription.value;
         const taskTitleTrim = title.trim();
         if (title != "" && taskTitleTrim != "") {
-            addTask(title, dueDate, priority, description);
-            console.table(projects)
+            if (formId === "none") {
+                addTask(title, dueDate, priority, description);
+            } else {
+                editTask(title, dueDate, priority, description, formId);
+            }
+            // console.table(projects)
             render();
         }
     }
