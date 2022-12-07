@@ -34,7 +34,7 @@ content.addEventListener("click", (e) => {
         const targetId = e.target.parentNode.dataset.itemId;
         const checklist = e.target.parentNode.parentNode;
         const activeProject = whichActive(projects);
-        insertAfter(createForm(activeProject.tasks[targetId].title, activeProject.tasks[targetId].title, activeProject.tasks[targetId].priority, activeProject.tasks[targetId].description), checklist);
+        insertAfter(createForm(activeProject.tasks[targetId].title, activeProject.tasks[targetId].dueDate, activeProject.tasks[targetId].priority, activeProject.tasks[targetId].description), checklist);
         checklist.style.display = "none";
         console.log(e.target.parentNode.parentNode);
     }
