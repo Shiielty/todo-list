@@ -244,3 +244,23 @@ input#taskDesc {
 .add-task:active {
     background-color: var(--darkblue);
 }
+
+.submit-btn {
+    margin: 10px 5px;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 0.2rem;
+    padding: 5px 10px;
+    color: #ffffffc4;
+    font-weight: bold;
+}
+
+.close-btn {
+    margin-left: 280px;
+    background-color: red;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 5px 10px;
+    color: #ffffffc4;
+    font-weight: bold;
+}

@@ -117,6 +117,13 @@ const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue ) 
     const description = createInput("taskDesc", "text");
     description.setAttribute("placeholder", "insert your notes here")
 
+    const submitBtn = document.createElement("button");
+    submitBtn.textContent = "Submit";
+    submitBtn.classList.add("submit-btn");
+    const closeBtn = document.createElement("button");
+    closeBtn.classList.add("close-btn");
+    closeBtn.textContent = "Close";
+
     const highPriority = createOption("High");
     const normalPriority = createOption("Normal");
     const lowPriority = createOption("Low");
@@ -151,6 +158,8 @@ const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue ) 
     form.appendChild(priority);
     form.appendChild(descriptionLabel);
     form.appendChild(description);
+    form.appendChild(submitBtn);
+    form.appendChild(closeBtn);
 
     return form;
 }
