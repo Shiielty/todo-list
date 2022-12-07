@@ -29,6 +29,15 @@ content.addEventListener("click", (e) => {
         changeProject(targetProject);
         render();
     }
+
+    if (e.target.className == "edit-btn") {
+        const targetId = e.target.parentNode.dataset.itemId;
+        const checklist = e.target.parentNode.parentNode;
+        const activeProject = whichActive(projects);
+        insertAfter(createForm(activeProject.tasks[targetId].title, activeProject.tasks[targetId].title, activeProject.tasks[targetId].priority, activeProject.tasks[targetId].description), checklist);
+        checklist.style.display = "none";
+        console.log(e.target.parentNode.parentNode);
+    }
     
     if (e.target.className === "delete-btn") {
         const targetId = e.target.parentNode.dataset.itemId;
