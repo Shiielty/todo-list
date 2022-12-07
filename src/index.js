@@ -36,18 +36,18 @@ content.addEventListener("click", (e) => {
         render();
     }
     
-    if (e.target.className === "enter-btn") {
-        const taskInput = document.querySelector("#taskInput");
+    if (e.target.className === "submit-btn") {
+        const taskTitle = document.querySelector("input#taskTitle");
         const taskDueDate = document.querySelector("input#dueDate");
         const taskPriority = document.querySelector("select#task-priority");
         const taskDescription = document.querySelector("input#taskDesc");
-        const taskTitle = taskInput.value;
+        const title = taskTitle.value;
         const dueDate = taskDueDate.value;
         const priority = taskPriority.value;
         const description = taskDescription.value;
-        const taskTitleTrim = taskTitle.trim();
-        if (taskTitle != "" && taskTitleTrim != "") {
-            addTask(taskTitle, dueDate, priority, description);
+        const taskTitleTrim = title.trim();
+        if (title != "" && taskTitleTrim != "") {
+            addTask(title, dueDate, priority, description);
             console.table(projects)
             render();
         }
@@ -56,6 +56,13 @@ content.addEventListener("click", (e) => {
     if (e.target.className === "add-task") {
         insertAfter(createForm("", "2022-01-01", "normal", ""), e.originalTarget.parentNode);
         e.originalTarget.style.display = "none";
+    }
+
+    if (e.target.className === "close-btn") {
+        // const form = e.originalTarget.parentNode
+        const addTaskBtn = document.querySelector(".add-task");
+        addTaskBtn.style.display = "block";
+        e.originalTarget.parentNode.remove();
     }
 })
 
