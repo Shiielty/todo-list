@@ -202,33 +202,18 @@ const createTasksHeader = () => {
 
 const createTasksContainer = () =>{
     const taskContainer = document.createElement("div");
-    const taskInput = createTextInput("taskInput", "+", "Create new task...");
-    const enterBtn = document.createElement("button");
-    const enterIcon = createImage(Enter)
-
-    taskInput.classList.add("task-input")
     
     taskContainer.classList.add("task-container");
-    enterBtn.classList.add("enter-btn"); 
     
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
         const taskTitle = task.title;
-        const taskDueDate = task.dueDate;
-        const taskPriority = task.priority;
-        const taskDescription = task.description;
         const checkbox = createTaskItem(taskId, taskTitle);
-        const form = createForm(taskDueDate, taskPriority, taskDescription)
 
         checkbox.appendChild(createTaskMenu(taskId));
         taskContainer.appendChild(checkbox);
-        taskContainer.appendChild(form);
     })
     
-    enterBtn.appendChild(enterIcon)
-    taskInput.appendChild(enterBtn);
-    taskContainer.appendChild(taskInput);
-    taskContainer.appendChild(createForm("2022-01-01", "high", ""));
 
     return taskContainer
 }
