@@ -120,8 +120,22 @@ const createForm = (dueDateValue, priorityValue, descriptionValue ) => {
     const lowPriority = createOption("Low");
 
     dueDate.value = dueDateValue;
-    priority.value = priorityValue;
     description.value = descriptionValue;
+
+    // selected attribute will become the value of the priority
+    switch (priorityValue) {
+        case "high":
+            highPriority.setAttribute("selected", true);
+            break;
+        case "normal":
+            normalPriority.setAttribute("selected", true);
+            break;
+        case "low":
+            lowPriority.setAttribute("selected", true);
+            break;
+        default:
+            break;
+    }
     
     priority.appendChild(highPriority);
     priority.appendChild(normalPriority);
