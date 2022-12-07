@@ -102,20 +102,22 @@ const createOption = (value) => {
     return option;
 }
 
-const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue ) => {
+const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue, id="none" ) => {
     const form = document.createElement("div");
     form.classList.add("form");
+    form.dataset.itemId = id;
+
     const taskTitle = createInput("taskTitle", "text");
     taskTitle.setAttribute("placeholder", "Task title...");
-    const dueDateLabel = createLabel("dueDate", "Due Date: ")
+    const dueDateLabel = createLabel("dueDate", "Due Date: ");
     const dueDate = createInput("dueDate", "date");
-    const priorityLabel = createLabel("priority", "Priority: ")
+    const priorityLabel = createLabel("priority", "Priority: ");
     const priority = document.createElement("select");
     priority.setAttribute("name", "priority");
     priority.setAttribute("id", "task-priority");
-    const descriptionLabel = createLabel("taskDesc", "Notes:")
+    const descriptionLabel = createLabel("taskDesc", "Notes:");
     const description = createInput("taskDesc", "text");
-    description.setAttribute("placeholder", "insert your notes here")
+    description.setAttribute("placeholder", "insert your notes here");
 
     const submitBtn = document.createElement("button");
     submitBtn.textContent = "Submit";
