@@ -1,4 +1,4 @@
-import { projects, whichActive, test } from './handler';
+import { projects, whichActive, test, addTask } from './handler';
 import Menu from './public/hamburger.png';
 import Bin from './public/bin.png';
 import Edit from './public/editing.png';
@@ -105,6 +105,8 @@ const createOption = (value) => {
 const createForm = (dueDateValue, priorityValue, descriptionValue ) => {
     const form = document.createElement("div");
     form.classList.add("form");
+    const taskTitle = createInput("taskTitle", "text");
+    taskTitle.setAttribute("placeholder", "Task title...");
     const dueDateLabel = createLabel("dueDate", "Due Date: ")
     const dueDate = createInput("dueDate", "date");
     const priorityLabel = createLabel("priority", "Priority: ")
@@ -141,6 +143,7 @@ const createForm = (dueDateValue, priorityValue, descriptionValue ) => {
     priority.appendChild(normalPriority);
     priority.appendChild(lowPriority);
     
+    form.appendChild(taskTitle);
     form.appendChild(dueDateLabel);
     form.appendChild(dueDate);
     form.appendChild(priorityLabel);
@@ -202,8 +205,12 @@ const createTasksHeader = () => {
 
 const createTasksContainer = () =>{
     const taskContainer = document.createElement("div");
-    
     taskContainer.classList.add("task-container");
+
+    const addTaskBtn = document.createElement("button");
+    addTaskBtn.textContent = "+ Add Task";
+    addTaskBtn.classList.add("add-task");
+    
     
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
@@ -214,6 +221,7 @@ const createTasksContainer = () =>{
         taskContainer.appendChild(checkbox);
     })
     
+    taskContainer.appendChild(addTaskBtn);
 
     return taskContainer
 }
