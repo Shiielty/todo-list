@@ -34,7 +34,7 @@ content.addEventListener("click", (e) => {
         const targetId = e.target.parentNode.dataset.itemId;
         const checklist = e.target.parentNode.parentNode;
         const activeProject = whichActive(projects);
-        insertAfter(createForm(activeProject.tasks[targetId].title, activeProject.tasks[targetId].dueDate, activeProject.tasks[targetId].priority, activeProject.tasks[targetId].description), checklist);
+        insertAfter(createForm(activeProject.tasks[targetId].title, activeProject.tasks[targetId].dueDate, activeProject.tasks[targetId].priority, activeProject.tasks[targetId].description, targetId), checklist);
         checklist.style.display = "none";
         console.log(e.target.parentNode.parentNode);
     }
@@ -68,10 +68,17 @@ content.addEventListener("click", (e) => {
     }
 
     if (e.target.className === "close-btn") {
-        // const form = e.originalTarget.parentNode
-        const addTaskBtn = document.querySelector(".add-task");
-        addTaskBtn.style.display = "block";
-        e.originalTarget.parentNode.remove();
+        const formId = e.target.parentNode.attributes[1].value;
+
+        if (formId === "none") {
+            const addTaskBtn = document.querySelector(".add-task");
+            addTaskBtn.style.display = "block";
+            e.target.parentNode.remove();
+        } else {
+            const checklist = e.target.parentNode.previousSibling;
+            checklist.style.display = "flex";
+            e.target.parentNode.remove();
+        }
     }
 })
 
