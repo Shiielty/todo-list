@@ -1,5 +1,5 @@
 import "./style.css";
-import { initializeWebsite, createTasksContainer, createForm } from "./dom";
+import { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList } from "./dom";
 import { projects, addProject, addTask, editTask, removeTask, changeProject, whichActive } from "./handler"
 // import { projects, addProject, test } from "./handler.js"
 
@@ -24,10 +24,13 @@ function insertAfter(newNode, referenceNode) {
 }
 
 content.addEventListener("click", (e) => {
-    if (e.target.className === "dev-test-button") {
-        const targetProject = projects.find(project => project.status == "inactive");;
-        changeProject(targetProject);
-        render();
+    if (e.target.className === "projects-menu") {
+        const main = document.querySelector("main");
+        if (main.childNodes.length == 2){
+            main.replaceChildren(createProjectsList());
+        } else {
+            main.replaceChildren(createTasksHeader(), createTasksContainer());
+        }
     }
 
     if (e.target.className == "edit-btn") {

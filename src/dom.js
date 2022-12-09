@@ -180,8 +180,8 @@ const createHeader = () => {
     
     title.textContent = "Just Do It List";
     projectTitle.textContent = whichActive(projects).projectTitle;
-    projectMenu.classList.add("dev-test-button");
-    menuIcon.classList.add("dev-test-button");
+    projectMenu.classList.add("projects-menu");
+    menuIcon.classList.add("projects-menu");
     
     projectMenu.appendChild(menuIcon);
     
@@ -247,6 +247,20 @@ const createMain = () => {
     return main;
 }
 
+const createProjectsList = () => {
+    const listWrapper = document.createElement("div");
+
+    projects.forEach((project) => {
+        const item = document.createElement("div");
+        item.classList.add("project-item");
+        item.textContent = project.projectTitle;
+        
+        listWrapper.appendChild(item);
+    })
+
+    return listWrapper;
+}
+
 const initializeWebsite = () => {
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
@@ -256,4 +270,4 @@ const initializeWebsite = () => {
     return wrapper;
 }
 
-export { initializeWebsite, createTasksContainer, createForm }
+export { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList }
