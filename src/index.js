@@ -1,6 +1,6 @@
 import "./style.css";
 import { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList } from "./dom";
-import { projects, addProject, addTask, editTask, removeTask, changeProject, whichActive } from "./handler"
+import { projects, addProject, addTask, editTask, removeTask, changeProject, removeProject, whichActive } from "./handler"
 // import { projects, addProject, test } from "./handler.js"
 
 const content = document.querySelector("#content");
@@ -23,6 +23,26 @@ function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
+const displayOnHover = (items) => {
+    items.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+            const elementId = item.dataset.itemId;
+            const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
+            element.classList.add("task-menu-visible");
+        })
+        item.addEventListener("mouseleave", () => {
+            const elementId = item.dataset.itemId;
+            const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
+            element.classList.remove("task-menu-visible");
+        })
+    })
+}
+
+const changeProjectTitleDisplay = () => {
+    const projectName = document.querySelector("nav>button:first-of-type")
+    projectName.textContent = whichActive(projects).projectTitle;
+}
+
 content.addEventListener("click", (e) => {
     if (e.target.className === "projects-menu") {
         const main = document.querySelector("main");
@@ -30,10 +50,11 @@ content.addEventListener("click", (e) => {
             main.replaceChildren(createProjectsList());
         } else {
             main.replaceChildren(createTasksHeader(), createTasksContainer());
+            changeProjectTitleDisplay();
         }
     }
 
-    if (e.target.className == "edit-btn") {
+    if (e.target.className == "edit-task-btn") {
         const targetId = e.target.parentNode.dataset.itemId;
         const checklist = e.target.parentNode.parentNode;
         const activeProject = whichActive(projects);
@@ -42,7 +63,7 @@ content.addEventListener("click", (e) => {
         console.log(e.target.parentNode.parentNode);
     }
     
-    if (e.target.className === "delete-btn") {
+    if (e.target.className === "delete-task-btn") {
         const targetId = e.target.parentNode.dataset.itemId;
         removeTask(targetId);
         render();
@@ -88,23 +109,34 @@ content.addEventListener("click", (e) => {
             e.target.parentNode.remove();
         }
     }
+
+    // if (e.target.className === "edit-project-btn") {
+
+    // }
+
+    if (e.target.className === "delete-project-btn") {
+        const targetId = e.target.parentNode.dataset.itemId;
+        removeProject(targetId);
+        const main = document.querySelector("main");
+        main.replaceChildren(createProjectsList());
+        changeProjectTitleDisplay();
+    }
 })
 
 content.addEventListener("mouseover", (e) => {
-    if (e.target.className === "task-item") {
-        const taskItems = document.querySelectorAll(".task-item");
-        taskItems.forEach((item) => {
-            item.addEventListener("mouseenter", () => {
-                const elementId = item.dataset.itemId;
-                const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
-                element.classList.add("task-menu-visible");
-            })
-            item.addEventListener("mouseleave", () => {
-                const elementId = item.dataset.itemId;
-                const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
-                element.classList.remove("task-menu-visible");
-            })
-        })
+    if (e.target.className === "task-item" || e.target.className === "project-item") {
+        switch (e.target.className) {
+            case "task-item":
+                const taskItems = document.querySelectorAll(".task-item");
+                displayOnHover(taskItems);
+                break;
+            case "project-item":
+                const projectItems = document.querySelectorAll(".project-item");
+                displayOnHover(projectItems);
+                break
+            default:
+                break;
+        }
     }
 })
 
