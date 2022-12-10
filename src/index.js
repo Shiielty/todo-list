@@ -1,5 +1,5 @@
 import "./style.css";
-import { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList } from "./dom";
+import { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList, createInputEdit} from "./dom";
 import { projects, addProject, addTask, editTask, removeTask, changeProject, removeProject, whichActive } from "./handler"
 // import { projects, addProject, test } from "./handler.js"
 
@@ -19,10 +19,16 @@ const renderProjectList = () => {
     changeProjectTitleDisplay();
 }
 
-const cursorFocus = (elementSelector) => {
-    const target = document.querySelector(elementSelector);
-    target.focus();
-    target.select();
+const cursorFocus = (elementSelector="none", element) => {
+    if (elementSelector == "none") {
+        const target = element;
+        target.focus();
+        target.select();
+    } else {
+        const target = document.querySelector(elementSelector);
+        target.focus();
+        target.select();
+    }
 }
 
 function insertAfter(newNode, referenceNode) {
@@ -52,7 +58,7 @@ const changeProjectTitleDisplay = () => {
 content.addEventListener("click", (e) => {
     if (e.target.className === "projects-menu") {
         const main = document.querySelector("main");
-        if (main.childNodes.length == 2){
+        if (main.childNodes.length > 1){
             main.replaceChildren(createProjectsList());
         } else {
             main.replaceChildren(createTasksHeader(), createTasksContainer());
@@ -128,20 +134,39 @@ content.addEventListener("click", (e) => {
         const projectTitleTrim = projectTitle.trim();
 
         if (projectTitle != "" && projectTitleTrim != "") {
-            console.log(projects)
             addProject(projectTitle, projects);
+            renderProjectList();
+        }
+    }
+    
+    if (e.target.className === "delete-project-btn") {
+        const targetId = e.target.parentNode.dataset.itemId;
+        removeProject(targetId);
+        renderProjectList();
+    }
+
+    if (e.target.className === "edit-project-btn") {
+        const targetList = e.target.parentNode.parentNode;
+        const targetId = e.target.parentNode.dataset.itemId;
+        targetList.style.display = "none";
+        insertAfter(createInputEdit(targetId, projects[targetId].projectTitle), targetList);
+        cursorFocus("none", targetList.nextSibling.firstChild);
+    }
+
+    if (e.target.className === "confirm-btn") {
+        const targetId = e.target.parentNode.dataset.itemId;
+        const editInput = e.target.parentNode.firstChild;
+        const projectTitle = editInput.value;
+        const projectTitleTrim = projectTitle.trim();
+
+        if (projectTitle != "" && projectTitleTrim != "") {
+            projects[targetId].projectTitle = projectTitle;
             console.log(projects)
             renderProjectList();
         }
     }
 
-    // if (e.target.className === "edit-project-btn") {
-
-    // }
-
-    if (e.target.className === "delete-project-btn") {
-        const targetId = e.target.parentNode.dataset.itemId;
-        removeProject(targetId);
+    if (e.target.className === "cancel-btn") {
         renderProjectList();
     }
 })
@@ -179,5 +204,17 @@ content.addEventListener("input", (e) => {
     if (e.target.id === "taskInput") {
         const form = document.querySelector(".task-container > div.form");
         form.classList.add("form-active");
+    }
+})
+
+content.addEventListener("change", (e) => {
+    if (e.target.type == "checkbox") {
+        if (e.target.checked) {
+            whichActive(projects).tasks[e.target.id].checked = "true";
+            console.log(whichActive(projects).tasks)
+        } else {
+            whichActive(projects).tasks[e.target.id].checked = "false";
+            console.log(whichActive(projects).tasks)
+        }
     }
 })

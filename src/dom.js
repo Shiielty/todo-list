@@ -4,10 +4,8 @@ import Bin from './public/bin.png';
 import Edit from './public/editing.png';
 import Enter from './public/enter.png';
 import UpArrow from './public/up-arrow-icon.png';
-
-function insertAfter(newNode, referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-}
+import Checkmark from './public/checkmark-icon.png';
+import Multiply from './public/multiply-icon.png';
 
 const createParagraph = (text) => {
     const p = document.createElement("p");
@@ -46,11 +44,15 @@ const createLabel = (id, labelText) => {
     return label;
 }
 
-const createTaskItem = (id, labelText) => {
+const createTaskItem = (id, labelText, checked) => {
     const taskItem = document.createElement("div")
     taskItem.classList.add("task-item");
     taskItem.dataset.itemId = id;
     const input = createInput(id, "checkbox");
+
+    if (checked == "true") {
+        input.checked = true;
+    }
 
     const label = createLabel(id, labelText);
 
@@ -227,7 +229,7 @@ const createTasksContainer = () =>{
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
         const taskTitle = task.title;
-        const checkbox = createTaskItem(taskId, taskTitle);
+        const checkbox = createTaskItem(taskId, taskTitle, task.checked);
 
         checkbox.appendChild(createMenuButton(taskId, "edit-task-btn", "delete-task-btn"));
         taskContainer.appendChild(checkbox);
@@ -282,6 +284,30 @@ const createProjectsList = () => {
     return listWrapper;
 }
 
+const createInputEdit = (id, inputValue) => {
+    const inputEdit = document.createElement("div");
+    const input = createInput("editInput", "text");
+    const confirmBtn = document.createElement("button");
+    const cancelBtn = document.createElement("button");
+    const checkIcon = createImage(Checkmark);
+    const multiplyIcon = createImage(Multiply);
+
+    inputEdit.classList.add("project-item-edit");
+    confirmBtn.classList.add("confirm-btn");
+    cancelBtn.classList.add("cancel-btn");
+
+    inputEdit.dataset.itemId = id;
+    input.value = inputValue;
+
+    confirmBtn.appendChild(checkIcon);
+    cancelBtn.appendChild(multiplyIcon);
+    inputEdit.appendChild(input);
+    inputEdit.appendChild(confirmBtn);
+    inputEdit.appendChild(cancelBtn);
+
+    return inputEdit;
+}
+
 const initializeWebsite = () => {
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
@@ -291,4 +317,4 @@ const initializeWebsite = () => {
     return wrapper;
 }
 
-export { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList }
+export { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList, createInputEdit }
