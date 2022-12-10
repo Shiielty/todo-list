@@ -7,25 +7,29 @@ const projects = [
                 "title": "Task 1",
                 "dueDate": "2022-01-01",
                 "priority": "high",
-                "description": "This is description of task 1"
+                "description": "This is description of task 1",
+                "checked": "false"
             },
             {
                 "title": "Task 2",
                 "dueDate": "2022-01-02",
                 "priority": "high",
-                "description": "This is description of task 2"
+                "description": "This is description of task 2",
+                "checked": "false"
             },
             {
                 "title": "Task 3",
                 "dueDate": "2022-03-01",
                 "priority": "low",
-                "description": "This is description of task 3"
+                "description": "This is description of task 3",
+                "checked": "false"
             },
             {
                 "title": "It works yay!!",
                 "dueDate": "2022-04-01",
                 "priority": "low",
-                "description": "This is description of task 4"
+                "description": "This is description of task 4",
+                "checked": "false"
             }, ],
         "status": "inactive",
     },
@@ -36,25 +40,29 @@ const projects = [
                 "title": "Task 99",
                 "dueDate": "2032-04-01",
                 "priority": "low",
-                "description": "This is description of task 99"
+                "description": "This is description of task 99",
+                "checked": "true"
             },
             {
                 "title": "Task 100",
                 "dueDate": "2032-04-02",
                 "priority": "low",
-                "description": "This is description of task 100"
+                "description": "This is description of task 100",
+                "checked": "false"
             },
             {
                 "title": "Task 101",
                 "dueDate": "2032-04-03",
                 "priority": "high",
-                "description": "This is description of task 101"
+                "description": "This is description of task 101",
+                "checked": "true"
             },
             {
                 "title": "Something isn't right",
                 "dueDate": "2022-04-10",
                 "priority": "high",
-                "description": "This is description of task 1000"
+                "description": "This is description of task 1000",
+                "checked": "false"
             }, ],
         "status": "active",
     }
