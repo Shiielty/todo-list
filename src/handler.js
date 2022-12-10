@@ -99,8 +99,13 @@ const addProject = (title, arr) => {
 }
 
 const whichActive = (projects) => {
-    const activeProject = projects.find(project => project.status == "active");
-    return activeProject;
+    let activeProject = projects.find(project => project.status == "active");
+    if (activeProject != undefined) {
+        return activeProject;
+    } else {
+        activeProject = projects[0];
+        return activeProject;
+    }
 }
 
 const changeProject = (targetProject) => {
@@ -116,4 +121,4 @@ const removeProject = (index) => {
 
 const test = () => console.log("Hello friend.");
 
-export { projects, addTask, editTask ,removeTask, addProject, changeProject, whichActive, test }
+export { projects, addTask, editTask ,removeTask, addProject, changeProject, removeProject, whichActive, test }
