@@ -13,6 +13,12 @@ const render = () => {
     content.appendChild(initializeWebsite());
 }
 
+const renderProjectList = () => {
+    const main = document.querySelector("main");
+    main.replaceChildren(createProjectsList());
+    changeProjectTitleDisplay();
+}
+
 const cursorFocus = (elementSelector) => {
     const target = document.querySelector(elementSelector);
     target.focus();
@@ -116,6 +122,19 @@ content.addEventListener("click", (e) => {
         render();
     }
 
+    if (e.target.className === "add-project-btn") {
+        const addProjectInput = document.querySelector("#addProject");
+        const projectTitle = addProjectInput.value;
+        const projectTitleTrim = projectTitle.trim();
+
+        if (projectTitle != "" && projectTitleTrim != "") {
+            console.log(projects)
+            addProject(projectTitle, projects);
+            console.log(projects)
+            renderProjectList();
+        }
+    }
+
     // if (e.target.className === "edit-project-btn") {
 
     // }
@@ -123,9 +142,7 @@ content.addEventListener("click", (e) => {
     if (e.target.className === "delete-project-btn") {
         const targetId = e.target.parentNode.dataset.itemId;
         removeProject(targetId);
-        const main = document.querySelector("main");
-        main.replaceChildren(createProjectsList());
-        changeProjectTitleDisplay();
+        renderProjectList();
     }
 })
 
