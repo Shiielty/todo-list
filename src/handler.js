@@ -103,7 +103,8 @@ const whichActive = (projects) => {
     if (activeProject != undefined) {
         return activeProject;
     } else {
-        activeProject = projects[0];
+        projects[0].status = "active";
+        activeProject = projects.find(project => project.status == "active");
         return activeProject;
     }
 }
