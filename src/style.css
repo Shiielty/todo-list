@@ -42,6 +42,14 @@ p {
     margin: 0;
 }
 
+h2 {
+    margin: 20px;
+    color: var(--white);
+    font-family: 'Inconsolata', monospace;
+    border-bottom: 2px solid var(--white5);
+    padding-bottom: 5px;
+}
+
 header > h1 {
     font-family: 'Inknut Antiqua', serif;
     font-size: 3rem;
@@ -271,4 +279,33 @@ input#taskDesc {
 
 .project-item {
     height: 32px;
+}
+
+.project-input-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+input#addProject {
+    margin: 10px 20px;
+    padding: 5px 10px;
+    background: var(--black);
+    border: none;
+    border-radius: 0.5rem;
+    outline: none;
+    color: white;
+}
+
+input#addProject:focus-visible {
+    background-color: white;
+    color: black;
+}
+
+.project-input-wrapper > button {
+    background: white;
+    border: none;
+    border-radius: 100%;
+    margin-left: -10px;
+    width: 2rem;
+    height: 2rem;
 }

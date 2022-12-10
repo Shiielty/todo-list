@@ -2,7 +2,8 @@ import { projects, whichActive, test, addTask } from './handler';
 import Menu from './public/hamburger.png';
 import Bin from './public/bin.png';
 import Edit from './public/editing.png';
-import Enter from './public/enter.png'
+import Enter from './public/enter.png';
+import UpArrow from './public/up-arrow-icon.png';
 
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
@@ -249,16 +250,34 @@ const createMain = () => {
 const createProjectsList = () => {
     const listWrapper = document.createElement("div");
 
+    const projectListHeading = document.createElement("h2")
+    projectListHeading.textContent = `Project (${projects.length}):`;
+    listWrapper.appendChild(projectListHeading);
+
+    const inputWrapper = document.createElement("div");
+    inputWrapper.classList.add("project-input-wrapper");
+    const projectInput = createInput("addProject", "text");
+    const arrowIcon = createImage(UpArrow);
+    const inputBtn = document.createElement("button");
+    
+    projectInput.setAttribute("placeholder", "+ Create new project");
+    inputBtn.classList.add("add-project-btn");
+    
     projects.forEach((project) => {
         const projectId = projects.indexOf(project);
         const item = document.createElement("div");
         item.classList.add("project-item");
         item.textContent = project.projectTitle;
         item.dataset.itemId = projectId;
-
+        
         item.appendChild(createMenuButton(projectId, "edit-project-btn", "delete-project-btn"));
         listWrapper.appendChild(item);
     })
+
+    inputBtn.appendChild(arrowIcon);
+    inputWrapper.appendChild(projectInput);
+    inputWrapper.appendChild(inputBtn);
+    listWrapper.appendChild(inputWrapper);
 
     return listWrapper;
 }
