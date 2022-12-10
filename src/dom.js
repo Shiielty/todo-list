@@ -59,10 +59,10 @@ const createTaskItem = (id, labelText) => {
     return taskItem;
 }
 
-const createTaskMenu = (id) => {
-    const taskMenu = document.createElement("div");
-    taskMenu.classList.add("task-menu");
-    taskMenu.dataset.itemId = id;
+const createMenuButton = (id, editBtnClass, deleteBtnClass) => {
+    const menuButton = document.createElement("div");
+    menuButton.classList.add("task-menu");
+    menuButton.dataset.itemId = id;
 
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
@@ -70,15 +70,15 @@ const createTaskMenu = (id) => {
     const editIcon = createImage(Edit);
     const deleteIcon = createImage(Bin);
 
-    editBtn.classList.add("edit-btn");
-    deleteBtn.classList.add("delete-btn")
+    editBtn.classList.add(editBtnClass);
+    deleteBtn.classList.add(deleteBtnClass)
 
     editBtn.appendChild(editIcon);
     deleteBtn.appendChild(deleteIcon);
-    taskMenu.appendChild(editBtn);
-    taskMenu.appendChild(deleteBtn);
+    menuButton.appendChild(editBtn);
+    menuButton.appendChild(deleteBtn);
 
-    return taskMenu;
+    return menuButton;
 }
 
 const createTextInput = (id, labelText, placeholder="") => {
@@ -223,13 +223,12 @@ const createTasksContainer = () =>{
     addTaskBtn.textContent = "+ Add Task";
     addTaskBtn.classList.add("add-task");
     
-    
     whichActive(projects).tasks.forEach((task) => {
         const taskId = whichActive(projects).tasks.indexOf(task);
         const taskTitle = task.title;
         const checkbox = createTaskItem(taskId, taskTitle);
 
-        checkbox.appendChild(createTaskMenu(taskId));
+        checkbox.appendChild(createMenuButton(taskId, "edit-task-btn", "delete-task-btn"));
         taskContainer.appendChild(checkbox);
     })
     
@@ -251,10 +250,13 @@ const createProjectsList = () => {
     const listWrapper = document.createElement("div");
 
     projects.forEach((project) => {
+        const projectId = projects.indexOf(project);
         const item = document.createElement("div");
         item.classList.add("project-item");
         item.textContent = project.projectTitle;
-        
+        item.dataset.itemId = projectId;
+
+        item.appendChild(createMenuButton(projectId, "edit-project-btn", "delete-project-btn"));
         listWrapper.appendChild(item);
     })
 

@@ -123,14 +123,17 @@ main {
     font-size: 1.5rem;
 }
 
-.task-container > .task-item {
+.task-container > .task-item,
+.project-item {
     display: flex;
     align-items: center;
     padding: 0 20px;
+    height: 32px;
     color: var(--white8)
 }
 
-.task-container > .task-item:hover {
+.task-container > .task-item:hover,
+.project-item:hover {
     background-color: var(--blue);
 }
 
@@ -264,4 +267,8 @@ input#taskDesc {
     padding: 5px 10px;
     color: #ffffffc4;
     font-weight: bold;
+}
+
+.project-item {
+    height: 32px;
 }
