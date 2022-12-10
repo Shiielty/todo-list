@@ -309,3 +309,39 @@ input#addProject:focus-visible {
     width: 2rem;
     height: 2rem;
 }
+
+.project-item-edit {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+input#editInput {
+    background: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 5px 10px;
+}
+
+.project-item-edit > button {
+    background: transparent;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+}
+
+.project-item-edit > button:hover {
+    background-color: var(--black);
+}
+
+.project-item-edit > .confirm-btn {
+    margin-left: 10px;
+}
+
+.project-item-edit > .cancel-btn:hover {
+    background-color: rgb(255,0,0,0.8);
+}
