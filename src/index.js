@@ -110,6 +110,12 @@ content.addEventListener("click", (e) => {
         }
     }
 
+    if (e.target.className === "project-item") {
+        const targetId = e.target.dataset.itemId;
+        changeProject(projects[targetId]);
+        render();
+    }
+
     // if (e.target.className === "edit-project-btn") {
 
     // }
