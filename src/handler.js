@@ -69,8 +69,8 @@ const projects = [
 ]; 
 
 // Todos function factory
-const Task = (title, dueDate, priority, description) => {
-    return { title, dueDate, priority, description }
+const Task = (title, dueDate, priority, description, checked) => {
+    return { title, dueDate, priority, description, checked }
 }
 
 // Project function factory
@@ -83,7 +83,7 @@ const Project = (projectTitle) => {
 
 const addTask = (title, dueDate, priority, description) => {
     const currentProject = whichActive(projects);
-    const task = Task(title, dueDate, priority, description);
+    const task = Task(title, dueDate, priority, description, "false");
     currentProject.tasks.push(task);
 }
 

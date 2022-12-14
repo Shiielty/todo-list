@@ -171,10 +171,11 @@ const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue, i
 
 
 const createHeader = () => {
+    let taskRemaining = whichActive(projects).tasks.filter((task) => task.checked == "false").length;
     const header = document.createElement("header");
     const title = document.createElement('h1');
     const subtitle1 = createParagraph("Good Morning, Shiielty!")
-    const subtitle2 = createParagraph("You have 3 task left to do,")
+    const subtitle2 = createParagraph(`You have ${taskRemaining} task left to do,`)
     const subtitle3 = createParagraph("Let's do it!")
     const projectNav = document.createElement("nav");
     const projectTitle = document.createElement("button");

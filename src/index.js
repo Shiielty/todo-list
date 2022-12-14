@@ -53,6 +53,17 @@ const changeProjectTitleDisplay = () => {
     projectName.textContent = whichActive(projects).projectTitle;
 }
 
+const todayDate = () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+
+    today = `${yyyy}-${mm}-${dd}`;
+
+    return today;
+}
+
 content.addEventListener("click", (e) => {
     if (e.target.className === "projects-menu") {
         isInputActive = false;
@@ -72,7 +83,6 @@ content.addEventListener("click", (e) => {
         const activeProject = whichActive(projects);
         insertAfter(createForm(activeProject.tasks[targetId].title, activeProject.tasks[targetId].dueDate, activeProject.tasks[targetId].priority, activeProject.tasks[targetId].description, targetId), checklist);
         checklist.style.display = "none";
-        console.log(e.target.parentNode.parentNode);
     }
     
     if (e.target.className === "delete-task-btn") {
@@ -104,12 +114,12 @@ content.addEventListener("click", (e) => {
 
     if (e.target.className === "add-task") {
         isInputActive = true;
-        insertAfter(createForm("", "", "normal", ""), e.originalTarget.parentNode);
+        insertAfter(createForm("", todayDate(), "normal", ""), e.originalTarget.parentNode);
         e.originalTarget.style.display = "none";
     }
 
     if (e.target.className === "close-btn") {
-        isInputActive = true;
+        isInputActive = false;
         const formId = e.target.parentNode.attributes[1].value;
 
         if (formId === "none") {
@@ -198,5 +208,9 @@ content.addEventListener("change", (e) => {
         } else {
             whichActive(projects).tasks[e.target.id].checked = "false";
         }
+        
+        const headerSubtitle2 = document.querySelector("header>p:nth-of-type(2)");
+        let taskRemaining = whichActive(projects).tasks.filter((task) => task.checked == "false").length;
+        headerSubtitle2.textContent = `You have ${taskRemaining} task left to do,`;
     }
 })
