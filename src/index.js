@@ -109,6 +109,7 @@ content.addEventListener("click", (e) => {
     }
 
     if (e.target.className === "close-btn") {
+        isInputActive = true;
         const formId = e.target.parentNode.attributes[1].value;
 
         if (formId === "none") {
