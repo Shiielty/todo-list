@@ -3,6 +3,7 @@ import { initializeWebsite, createTasksHeader, createTasksContainer, createForm,
 import { projects, addProject, addTask, editTask, removeTask, changeProject, removeProject, whichActive } from "./handler"
 
 const content = document.querySelector("#content");
+let isInputActive = false;
 
 content.appendChild(initializeWebsite());
 
@@ -10,12 +11,14 @@ const renderAll = () => {
     const wrapper = document.querySelector(".wrapper");
     wrapper.remove();
     content.appendChild(initializeWebsite());
+    isInputActive = false;
 }
 
 const renderProjectList = () => {
     const main = document.querySelector("main");
     main.replaceChildren(createProjectsList());
     changeProjectTitleDisplay();
+    isInputActive = false;
 }
 
 const cursorFocus = (element) => {
@@ -31,9 +34,11 @@ function insertAfter(newNode, referenceNode) {
 const displayOnHover = (items) => {
     items.forEach((item) => {
         item.addEventListener("mouseenter", () => {
-            const elementId = item.dataset.itemId;
-            const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
-            element.classList.add("task-menu-visible");
+            if (!isInputActive) {
+                const elementId = item.dataset.itemId;
+                const element = document.querySelector(`.task-menu[data-item-id="${elementId}"]`);
+                element.classList.add("task-menu-visible");
+            }
         })
         item.addEventListener("mouseleave", () => {
             const elementId = item.dataset.itemId;
@@ -50,6 +55,7 @@ const changeProjectTitleDisplay = () => {
 
 content.addEventListener("click", (e) => {
     if (e.target.className === "projects-menu") {
+        isInputActive = false;
         const main = document.querySelector("main");
         if (main.childNodes.length > 1){
             main.replaceChildren(createProjectsList());
@@ -60,6 +66,7 @@ content.addEventListener("click", (e) => {
     }
 
     if (e.target.className == "edit-task-btn") {
+        isInputActive = true;
         const targetId = e.target.parentNode.dataset.itemId;
         const checklist = e.target.parentNode.parentNode;
         const activeProject = whichActive(projects);
@@ -96,6 +103,7 @@ content.addEventListener("click", (e) => {
     }
 
     if (e.target.className === "add-task") {
+        isInputActive = true;
         insertAfter(createForm("", "", "normal", ""), e.originalTarget.parentNode);
         e.originalTarget.style.display = "none";
     }
@@ -138,11 +146,12 @@ content.addEventListener("click", (e) => {
     }
 
     if (e.target.className === "edit-project-btn") {
+        isInputActive = true;
         const targetList = e.target.parentNode.parentNode;
         const targetId = e.target.parentNode.dataset.itemId;
         targetList.style.display = "none";
         insertAfter(createInputEdit(targetId, projects[targetId].projectTitle), targetList);
-        cursorFocus("none", targetList.nextSibling.firstChild);
+        cursorFocus(targetList.nextSibling.firstChild);
     }
 
     if (e.target.className === "confirm-btn") {
@@ -164,7 +173,7 @@ content.addEventListener("click", (e) => {
 })
 
 content.addEventListener("mouseover", (e) => {
-    if (e.target.className === "task-item" || e.target.className === "project-item") {
+    if ((e.target.className === "task-item" || e.target.className === "project-item") && isInputActive == false) {
         switch (e.target.className) {
             case "task-item":
                 const taskItems = document.querySelectorAll(".task-item");
