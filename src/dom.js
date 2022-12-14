@@ -171,10 +171,12 @@ const createForm = (titleValue, dueDateValue, priorityValue, descriptionValue, i
 
 
 const createHeader = () => {
+    //TODO: include user name in the greeting (subtitle)
+
     let taskRemaining = whichActive(projects).tasks.filter((task) => task.checked == "false").length;
     const header = document.createElement("header");
     const title = document.createElement('h1');
-    const subtitle1 = createParagraph("Good Morning, Shiielty!")
+    // const subtitle1 = createParagraph("Good Morning/Afternoon/Evening, ${USER}")
     const subtitle2 = createParagraph(`You have ${taskRemaining} task left to do,`)
     const subtitle3 = createParagraph("Let's do it!")
     const projectNav = document.createElement("nav");
@@ -193,7 +195,7 @@ const createHeader = () => {
     projectNav.appendChild(projectMenu);
     
     header.appendChild(title);
-    header.appendChild(subtitle1);
+    // header.appendChild(subtitle1);
     header.appendChild(subtitle2);
     header.appendChild(subtitle3);
     header.appendChild(projectNav);
@@ -203,18 +205,21 @@ const createHeader = () => {
 
 const createTasksHeader = () => {
     const tasksHeader = document.createElement("div");
-    const today = createList("Today"); 
-    const tomorrow = createList("Tomorrow"); 
-    const upcoming = createList("Upcoming"); 
-    const someday = createList("Someday");
+
+    // other option to display task based on the dueDate is not implemented yet
+    // so 'today' variable will display 'All Task' for now
+    const today = createList("All Task"); 
+    // const tomorrow = createList("Tomorrow"); 
+    // const upcoming = createList("Upcoming"); 
+    // const someday = createList("Someday");
 
     tasksHeader.classList.add("task-header");
     today.classList.add("active");
     
     tasksHeader.appendChild(today);
-    tasksHeader.appendChild(tomorrow);
-    tasksHeader.appendChild(upcoming);
-    tasksHeader.appendChild(someday);
+    // tasksHeader.appendChild(tomorrow);
+    // tasksHeader.appendChild(upcoming);
+    // tasksHeader.appendChild(someday);
 
     return tasksHeader
 }
@@ -231,6 +236,18 @@ const createTasksContainer = () =>{
         const taskId = whichActive(projects).tasks.indexOf(task);
         const taskTitle = task.title;
         const checkbox = createTaskItem(taskId, taskTitle, task.checked);
+
+        switch (task.priority) {
+            case "high":
+                checkbox.classList.add("priority-high");
+                break;
+            case "normal":
+                checkbox.classList.add("priority-normal");
+                break;
+            case "low":
+                checkbox.classList.add("priority-low");
+                break;
+        }
 
         checkbox.appendChild(createMenuButton(taskId, "edit-task-btn", "delete-task-btn"));
         taskContainer.appendChild(checkbox);

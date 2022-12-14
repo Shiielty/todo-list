@@ -184,19 +184,14 @@ content.addEventListener("click", (e) => {
 })
 
 content.addEventListener("mouseover", (e) => {
-    if ((e.target.className === "task-item" || e.target.className === "project-item") && isInputActive == false) {
-        switch (e.target.className) {
-            case "task-item":
-                const taskItems = document.querySelectorAll(".task-item");
-                displayOnHover(taskItems);
-                break;
-            case "project-item":
-                const projectItems = document.querySelectorAll(".project-item");
-                displayOnHover(projectItems);
-                break
-            default:
-                break;
-        }
+    if (e.target.className.includes("task-item") && isInputActive == false) {
+        const taskItems = document.querySelectorAll(".task-item");
+        displayOnHover(taskItems);
+    }
+
+    if (e.target.className.includes("project-item") && isInputActive == false) {
+        const projectItems = document.querySelectorAll(".project-item");
+        displayOnHover(projectItems);
     }
 })
 
@@ -209,7 +204,7 @@ content.addEventListener("change", (e) => {
             whichActive(projects).tasks[e.target.id].checked = "false";
         }
         
-        const headerSubtitle2 = document.querySelector("header>p:nth-of-type(2)");
+        const headerSubtitle2 = document.querySelector("header>p:nth-of-type(1)");
         let taskRemaining = whichActive(projects).tasks.filter((task) => task.checked == "false").length;
         headerSubtitle2.textContent = `You have ${taskRemaining} task left to do,`;
     }

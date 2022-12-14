@@ -6,32 +6,32 @@ const projects = [
             {
                 "title": "Task 1",
                 "dueDate": "2022-01-01",
-                "priority": "high",
+                "priority": "low",
                 "description": "This is description of task 1",
                 "checked": "false"
             },
             {
-                "title": "Task 2",
+                "title": "Task 2 (high priority)",
                 "dueDate": "2022-01-02",
                 "priority": "high",
                 "description": "This is description of task 2",
                 "checked": "false"
             },
             {
-                "title": "Task 3",
+                "title": "Task 3 (normal priority)",
                 "dueDate": "2022-03-01",
-                "priority": "low",
+                "priority": "normal",
                 "description": "This is description of task 3",
                 "checked": "false"
             },
             {
-                "title": "It works yay!!",
+                "title": "Task 4 (low priority)",
                 "dueDate": "2022-04-01",
                 "priority": "low",
                 "description": "This is description of task 4",
                 "checked": "false"
             }, ],
-        "status": "inactive",
+        "status": "active",
     },
     {
         "projectTitle": "Project 2",
@@ -58,13 +58,13 @@ const projects = [
                 "checked": "true"
             },
             {
-                "title": "Something isn't right",
+                "title": "Task 102",
                 "dueDate": "2022-04-10",
                 "priority": "high",
                 "description": "This is description of task 1000",
                 "checked": "false"
             }, ],
-        "status": "active",
+        "status": "inactive",
     }
 ]; 
 
