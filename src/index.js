@@ -1,13 +1,12 @@
 import "./style.css";
 import { initializeWebsite, createTasksHeader, createTasksContainer, createForm, createProjectsList, createInputEdit} from "./dom";
 import { projects, addProject, addTask, editTask, removeTask, changeProject, removeProject, whichActive } from "./handler"
-// import { projects, addProject, test } from "./handler.js"
 
 const content = document.querySelector("#content");
 
 content.appendChild(initializeWebsite());
 
-const render = () => {
+const renderAll = () => {
     const wrapper = document.querySelector(".wrapper");
     wrapper.remove();
     content.appendChild(initializeWebsite());
@@ -19,16 +18,10 @@ const renderProjectList = () => {
     changeProjectTitleDisplay();
 }
 
-const cursorFocus = (elementSelector="none", element) => {
-    if (elementSelector == "none") {
-        const target = element;
-        target.focus();
-        target.select();
-    } else {
-        const target = document.querySelector(elementSelector);
-        target.focus();
-        target.select();
-    }
+const cursorFocus = (element) => {
+    const target = element;
+    target.focus();
+    target.select();
 }
 
 function insertAfter(newNode, referenceNode) {
@@ -78,7 +71,7 @@ content.addEventListener("click", (e) => {
     if (e.target.className === "delete-task-btn") {
         const targetId = e.target.parentNode.dataset.itemId;
         removeTask(targetId);
-        render();
+        renderAll();
     }
     
     if (e.target.className === "submit-btn") {
@@ -98,13 +91,12 @@ content.addEventListener("click", (e) => {
             } else {
                 editTask(title, dueDate, priority, description, formId);
             }
-            // console.table(projects)
-            render();
+            renderAll();
         }
     }
 
     if (e.target.className === "add-task") {
-        insertAfter(createForm("", "2022-01-01", "normal", ""), e.originalTarget.parentNode);
+        insertAfter(createForm("", "", "normal", ""), e.originalTarget.parentNode);
         e.originalTarget.style.display = "none";
     }
 
@@ -125,7 +117,7 @@ content.addEventListener("click", (e) => {
     if (e.target.className === "project-item") {
         const targetId = e.target.dataset.itemId;
         changeProject(projects[targetId]);
-        render();
+        renderAll();
     }
 
     if (e.target.className === "add-project-btn") {
@@ -188,33 +180,13 @@ content.addEventListener("mouseover", (e) => {
     }
 })
 
-content.addEventListener("keypress", (e) => {    
-    if (e.target.id === "taskInput" || e.target.id === "taskDesc") {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            document.querySelector(".enter-btn").click();
-            cursorFocus("#taskInput");
-            const form = document.querySelector(".task-container > div.form");
-            form.classList.add("form-active");
-        }
-    }
-})
-
-content.addEventListener("input", (e) => {
-    if (e.target.id === "taskInput") {
-        const form = document.querySelector(".task-container > div.form");
-        form.classList.add("form-active");
-    }
-})
-
 content.addEventListener("change", (e) => {
     if (e.target.type == "checkbox") {
         if (e.target.checked) {
             whichActive(projects).tasks[e.target.id].checked = "true";
-            console.log(whichActive(projects).tasks)
+            
         } else {
             whichActive(projects).tasks[e.target.id].checked = "false";
-            console.log(whichActive(projects).tasks)
         }
     }
 })
