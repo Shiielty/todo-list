@@ -2,7 +2,11 @@
 
 > A web application to organize your todo list.
 
-Created using HTML, CSS, and Javascript.
+Created using HTML, CSS, and Javascript.  
+
+![Just Do It List](./src/public/Todo-List-Screenshot.png)
+
+Live preview [here](https://shiielty.github.io/todo-list/).
 
 Credit:
 
